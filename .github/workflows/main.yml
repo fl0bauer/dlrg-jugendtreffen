@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - chore/#6-semantic-versioning
 
 jobs:
   publish:
@@ -21,4 +22,4 @@ jobs:
       - name: Semantic Release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          run: yarn semantic-release
+          run: yarn run release
