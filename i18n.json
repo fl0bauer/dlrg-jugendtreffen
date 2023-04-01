@@ -1,0 +1,11 @@
+{
+  "locales": [
+    "de"
+  ],
+  "defaultLocale": "de",
+  "pages": {
+    "*": [
+      "meta"
+    ]
+  }
+}
