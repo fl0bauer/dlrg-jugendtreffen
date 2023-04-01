@@ -12,6 +12,10 @@
     "@semantic-release/git"
   ],
   "release": {
+    "branches": [
+      "main",
+      "chore/#6-semantic-versioning"
+    ],
     "prepare": [
       "@semantic-release/changelog",
       "@semantic-release/npm",
