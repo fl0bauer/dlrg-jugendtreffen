@@ -13,8 +13,7 @@
   ],
   "release": {
     "branches": [
-      "main",
-      "chore/#6-semantic-versioning"
+      "main"
     ],
     "prepare": [
       "@semantic-release/changelog",

@@ -2,7 +2,7 @@ name: Semantic Release
 
 on:
   push:
-    branches: [ main, chore/#6-semantic-versioning ]
+    branches: [ main ]
 
 jobs:
   publish:
