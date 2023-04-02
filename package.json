@@ -1,13 +1,40 @@
 {
   "name": "drlg-event-registration-form",
   "version": "0.1.0",
-  "private": true,
   "license": "MIT",
+  "private": true,
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/github",
+    "@semantic-release/npm",
+    "@semantic-release/git"
+  ],
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "prepare": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      {
+        "path": "@semantic-release/git",
+        "assets": [
+          "package.json",
+          "yarn.lock",
+          "CHANGELOG.md"
+        ],
+        "message": "chore(release): ${nextRelease.version}"
+      }
+    ]
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "release": "semantic-release"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.17",
@@ -20,9 +47,12 @@
     "next-translate": "^2.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "semantic-release": "^21.0.1",
     "typescript": "5.0.3"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
     "@tailwindcss/forms": "^0.5.3",
     "autoprefixer": "^10.4.14",
     "next-translate-plugin": "^2.0.4",
