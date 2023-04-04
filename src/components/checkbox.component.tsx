@@ -1,5 +1,6 @@
 import { CheckboxProps } from "@/types/checkbox.types";
 import classNames from "classnames";
+import { forwardRef, LegacyRef } from "react";
 
 const styles = {
 	container: "flex flex-col gap-1",
@@ -7,7 +8,7 @@ const styles = {
 	checkbox: "rounded-sm shadow-sm transition-all text-rose-500 focus:ring-rose-500 disabled:bg-gray-100 disabled:cursor-not-allowed",
 };
 
-export default function Checkbox({ label, id, className, type, ...props }: CheckboxProps) {
+function Checkbox({ label, id, className, type, ...props }: CheckboxProps, ref?: LegacyRef<HTMLInputElement>) {
 	const classes = classNames(styles.checkbox, className);
 
 	return (
@@ -17,7 +18,9 @@ export default function Checkbox({ label, id, className, type, ...props }: Check
 					{label}
 				</label>
 			)}
-			<input id={id} name={id} type="checkbox" className={classes} {...props} />
+			<input id={id} name={id} type="checkbox" className={classes} ref={ref} {...props} />
 		</div>
 	);
 }
+
+export default forwardRef<HTMLInputElement, CheckboxProps>(Checkbox);

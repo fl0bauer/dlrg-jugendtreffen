@@ -1,5 +1,6 @@
-import { InputProps } from "@/types/input.types";
 import classNames from "classnames";
+import { forwardRef, LegacyRef } from "react";
+import { InputProps } from "@/types/input.types";
 
 const styles = {
 	container: "flex flex-col gap-1",
@@ -7,7 +8,7 @@ const styles = {
 	input: "block bg-white rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 outline-0 transition-all placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-rose-500 disabled:bg-gray-100 disabled:cursor-not-allowed",
 };
 
-export default function Input({ label, id, className, ...props }: InputProps) {
+function Input({ label, id, className, ...props }: InputProps, ref?: LegacyRef<HTMLInputElement>) {
 	const classes = classNames(styles.input, className);
 
 	return (
@@ -17,7 +18,9 @@ export default function Input({ label, id, className, ...props }: InputProps) {
 					{label}
 				</label>
 			)}
-			<input id={id} name={id} className={classes} {...props} />
+			<input id={id} name={id} className={classes} ref={ref} {...props} />
 		</div>
 	);
 }
+
+export default forwardRef<HTMLInputElement, InputProps>(Input);
