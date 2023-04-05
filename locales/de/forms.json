@@ -1,5 +1,7 @@
 {
   "location": {
+    "heading": "Landesverband",
+    "description": "Bitte wähle einen Landesverband, Bezirk und ggf. eine Ortsgruppe",
     "association": {
       "label": "Landesverband",
       "errors": {
