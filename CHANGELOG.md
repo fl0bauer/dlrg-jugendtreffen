@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.0.0...v1.1.0) (2023-04-05)
+
+
+### Features
+
+* **database:** implement `Association`, `District` and `Local` model ([0e0397b](https://github.com/fl0bauer/drlg-event-registration-form/commit/0e0397b4657ab0f780aec15f3ee8b49cc3558905))
+* **formulars:** add location formular ([f3774b9](https://github.com/fl0bauer/drlg-event-registration-form/commit/f3774b94ce3af08ee6ab5c35a8b7c3c36a0e062d)), closes [#12](https://github.com/fl0bauer/drlg-event-registration-form/issues/12)
+
 # 1.0.0 (2023-04-02)
 
 
