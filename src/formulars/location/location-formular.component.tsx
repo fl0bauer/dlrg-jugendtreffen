@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import Dropdown from "@/components/dropdown.component";
 import { getDistricts, getLocals } from "@/lib/location.lib";
 import Button from "@/components/button.component";
+import { ArrowRightCircleIcon } from "@heroicons/react/24/outline";
 
 export default function LocationFormular({ associationsWithDependencies, onValidFormSubmit }: LocationFormularProps) {
 	const { t } = useTranslation("forms");
@@ -64,8 +65,9 @@ export default function LocationFormular({ associationsWithDependencies, onValid
 				))}
 			</Dropdown>
 
-			<Button type="submit" disabled={!formState.isValid}>
+			<Button className="w-fit self-end" type="submit" disabled={!formState.isValid}>
 				{t("location.submit")}
+				<ArrowRightCircleIcon className="h-4 w-4" />
 			</Button>
 		</form>
 	);
