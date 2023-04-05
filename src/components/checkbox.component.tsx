@@ -5,8 +5,8 @@ import { forwardRef, LegacyRef } from "react";
 const styles = {
 	container: "flex flex-col gap-1",
 	label: "block w-fit text-sm font-medium leading-6 text-gray-900 select-none",
-	checkbox: "rounded-sm shadow-sm transition-all text-rose-500 focus:ring-rose-500 disabled:bg-gray-100 disabled:cursor-not-allowed",
-	error: "block w-fit text-xs text-rose-400 select-none",
+	checkbox: "rounded-sm shadow-sm transition-all text-indigo-500 focus:ring-indigo-500 disabled:bg-gray-100 disabled:cursor-not-allowed",
+	error: "block w-fit text-xs text-indigo-400 select-none",
 };
 
 function Checkbox({ label, error, id, className, type, ...props }: CheckboxProps, ref?: LegacyRef<HTMLInputElement>) {
