@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.1.0...v1.2.0) (2023-04-05)
+
+
+### Features
+
+* **components:** create `frame` component ([8e53c7e](https://github.com/fl0bauer/drlg-event-registration-form/commit/8e53c7ef016db7194ec0b94dca4b972eae683fca)), closes [#15](https://github.com/fl0bauer/drlg-event-registration-form/issues/15)
+* **components:** create `frame` component ([12b79a9](https://github.com/fl0bauer/drlg-event-registration-form/commit/12b79a9f298f1fd203d929ea21486e7a4a68842e))
+
 # [1.1.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.0.0...v1.1.0) (2023-04-05)
 
 
