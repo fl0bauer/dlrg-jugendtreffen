@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { StepperProps } from "@/types/stepper.types";
 import { Children, cloneElement, useState } from "react";
+import { cs } from "@/lib/styles.lib";
 
 const styles = {
 	container: "flex flex-col gap-12",
@@ -17,12 +18,10 @@ export default function Stepper({ children, previousStepButton, nextStepButton, 
 	const previousStep = () => setStep(step - 1);
 	const nextStep = () => setStep(step + 1);
 
-	const classes = classNames(styles.container, className);
-
 	return (
-		<div className={classes} {...props}>
+		<>
 			{Children.map(children, (child, index) => {
-				if (!isCurrentStep(index)) return <></>;
+				// if (!isCurrentStep(index)) return <></>;
 
 				const PreviousStepButton = cloneElement(previousStepButton, {
 					onClick: () => {
@@ -47,17 +46,19 @@ export default function Stepper({ children, previousStepButton, nextStepButton, 
 					disabled: child.props?.disableNextStep || false,
 				});
 
+				const classes = classNames(cs(styles.container, isCurrentStep(index)), cs("hidden", !isCurrentStep(index)), className);
+
 				return (
-					<>
+					<div className={classes} {...props}>
 						{child}
 
 						<div className={styles.buttons}>
 							{hasPreviousStep(step) && PreviousStepButton}
 							{hasNextStep(step) ? NextStepButton : SubmitButton}
 						</div>
-					</>
+					</div>
 				);
 			})}
-		</div>
+		</>
 	);
 }

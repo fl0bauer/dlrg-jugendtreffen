@@ -1,16 +1,13 @@
 import { LocationFormularProps } from "@/types/location-formular.types";
 import useTranslation from "next-translate/useTranslation";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import getSchema from "@/formulars/location/location-formular.schema";
+import { useFormContext } from "react-hook-form";
 import { useEffect } from "react";
 import Dropdown from "@/components/dropdown.component";
 import { getDistricts, getLocals } from "@/lib/location.lib";
 
-export default function LocationFormular({ associationsWithDependencies, onValidFormSubmit }: LocationFormularProps) {
+export default function LocationFormular({ associationsWithDependencies }: LocationFormularProps) {
 	const { t } = useTranslation("forms");
-	const schema = getSchema(associationsWithDependencies);
-	const { watch, setValue, clearErrors, register, formState, handleSubmit } = useForm({ resolver: zodResolver(schema), mode: "all" });
+	const { watch, setValue, clearErrors, register, formState, handleSubmit } = useFormContext();
 
 	const getLabel = (name: string) => t(`location.${name}.label`);
 	const getErrors = (name: string) => {
