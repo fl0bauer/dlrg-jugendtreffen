@@ -1,4 +1,9 @@
 {
+  "general": {
+    "previous-step": "Vorheriger Schritt",
+    "next-step": "Nächster Schritt",
+    "submit": "Registrieren"
+  },
   "location": {
     "heading": "Landesverband",
     "description": "Bitte wähle einen Landesverband, Bezirk und ggf. eine Ortsgruppe",
@@ -19,7 +24,6 @@
       "errors": {
         "required": "Bitte wähle eine Ortsgruppe"
       }
-    },
-    "submit": "Nächster Schritt"
+    }
   }
 }
