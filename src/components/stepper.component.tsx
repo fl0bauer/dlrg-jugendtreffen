@@ -21,8 +21,6 @@ export default function Stepper({ children, previousStepButton, nextStepButton, 
 	return (
 		<>
 			{Children.map(children, (child, index) => {
-				// if (!isCurrentStep(index)) return <></>;
-
 				const PreviousStepButton = cloneElement(previousStepButton, {
 					onClick: () => {
 						child.props?.onPreviousStep && child.props.onPreviousStep();
