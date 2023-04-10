@@ -5,9 +5,13 @@ import { useEffect } from "react";
 import Dropdown from "@/components/dropdown.component";
 import { getDistricts, getLocals } from "@/lib/location.lib";
 
+const styles = {
+	form: "flex flex-col gap-8",
+};
+
 export default function LocationFormular({ associationsWithDependencies }: LocationFormularProps) {
 	const { t } = useTranslation("forms");
-	const { watch, setValue, clearErrors, register, formState, handleSubmit } = useFormContext();
+	const { watch, setValue, clearErrors, register, formState } = useFormContext();
 
 	const getLabel = (name: string) => t(`location.${name}.label`);
 	const getErrors = (name: string) => {
@@ -38,7 +42,7 @@ export default function LocationFormular({ associationsWithDependencies }: Locat
 	}, [district, setValue, clearErrors]);
 
 	return (
-		<form className="flex flex-col gap-8">
+		<form className={styles.form}>
 			<Dropdown label={getLabel("association")} error={getErrors("association")} {...register("association")}>
 				<option></option>
 				{associationsWithDependencies.map((association) => (
