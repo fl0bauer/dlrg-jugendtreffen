@@ -12,6 +12,8 @@ import { FormProvider, useForm } from "react-hook-form";
 import LocationFormular from "@/formulars/location/location-formular.component";
 import getLocationSchema from "@/formulars/location/location-formular.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import getSupervisorSchema from "@/formulars/supervisor/supervisor-formular.schema";
+import SupervisorFormular from "@/formulars/supervisor/supervisor-formular.component";
 
 export const getServerSideProps = async () => {
 	const associations = await fetchAssociations();
@@ -21,11 +23,18 @@ export const getServerSideProps = async () => {
 	};
 };
 
+const styles = {
+	step: "flex flex-col gap-8 w-full mx-auto max-w-2xl",
+};
+
 export default function Home({ associations }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 	const { t } = useTranslation("forms");
 
 	const locationFormularSchema = getLocationSchema(associations);
 	const locationFormular = useForm({ resolver: zodResolver(locationFormularSchema), mode: "all" });
+
+	const supervisorFormularSchema = getSupervisorSchema();
+	const supervisorFormular = useForm({ resolver: zodResolver(supervisorFormularSchema), mode: "all" });
 
 	return (
 		<>
@@ -52,11 +61,19 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 						</Button>
 					}
 				>
-					<Step className="flex flex-col gap-8 w-full mx-auto max-w-2xl" disableNextStep={!locationFormular.formState.isValid}>
+					<Step className={styles.step} disableNextStep={!locationFormular.formState.isValid}>
 						<Heading heading={t("location.heading")} description={t("location.description")} />
 
 						<FormProvider {...locationFormular}>
 							<LocationFormular associationsWithDependencies={associations} />
+						</FormProvider>
+					</Step>
+
+					<Step className={styles.step} disableNextStep={!supervisorFormular.formState.isValid}>
+						<Heading heading={t("supervisor.heading")} description={t("supervisor.description")} />
+
+						<FormProvider {...supervisorFormular}>
+							<SupervisorFormular />
 						</FormProvider>
 					</Step>
 				</Stepper>
