@@ -21,10 +21,6 @@ export const getServerSideProps = async () => {
 	};
 };
 
-const styles = {
-	container: "flex flex-col gap-8 w-full mx-auto max-w-2xl",
-};
-
 export default function Home({ associations }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 	const { t } = useTranslation("forms");
 
@@ -56,22 +52,12 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 						</Button>
 					}
 				>
-					<Step>
-						<Heading heading="Step 1" description="Step Description" />
-						<div>Step 1</div>
-					</Step>
-
-					<Step className={styles.container} disableNextStep={!locationFormular.formState.isValid}>
+					<Step className="flex flex-col gap-8 w-full mx-auto max-w-2xl" disableNextStep={!locationFormular.formState.isValid}>
 						<Heading heading={t("location.heading")} description={t("location.description")} />
 
 						<FormProvider {...locationFormular}>
 							<LocationFormular associationsWithDependencies={associations} />
 						</FormProvider>
-					</Step>
-
-					<Step>
-						<Heading heading="Step 3" description="Step Description" />
-						<div>Step 3</div>
 					</Step>
 				</Stepper>
 			</Frame>
