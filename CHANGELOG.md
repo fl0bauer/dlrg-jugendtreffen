@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.2.0...v1.3.0) (2023-04-10)
+
+
+### Features
+
+* **components:** add `step` and `stepper` component ([dc6d591](https://github.com/fl0bauer/drlg-event-registration-form/commit/dc6d591f07d0c4e9200aba6230a5efc9e8d56472))
+
 # [1.2.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.1.0...v1.2.0) (2023-04-05)
 
 
