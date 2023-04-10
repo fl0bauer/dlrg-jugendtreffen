@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.3.0...v1.4.0) (2023-04-10)
+
+
+### Features
+
+* **formulars:** add supervisor formular ([9b56829](https://github.com/fl0bauer/drlg-event-registration-form/commit/9b5682976ba9c1f33b49b36b8114742c2137d79a)), closes [#19](https://github.com/fl0bauer/drlg-event-registration-form/issues/19)
+
 # [1.3.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.2.0...v1.3.0) (2023-04-10)
 
 
