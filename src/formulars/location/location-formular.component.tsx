@@ -1,4 +1,4 @@
-import { LocationFormularProps, LocationFormularValues } from "@/types/location-formular.types";
+import { LocationFormularProps } from "@/types/location-formular.types";
 import useTranslation from "next-translate/useTranslation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -6,8 +6,6 @@ import getSchema from "@/formulars/location/location-formular.schema";
 import { useEffect } from "react";
 import Dropdown from "@/components/dropdown.component";
 import { getDistricts, getLocals } from "@/lib/location.lib";
-import Button from "@/components/button.component";
-import { ArrowRightCircleIcon } from "@heroicons/react/24/outline";
 
 export default function LocationFormular({ associationsWithDependencies, onValidFormSubmit }: LocationFormularProps) {
 	const { t } = useTranslation("forms");
@@ -43,7 +41,7 @@ export default function LocationFormular({ associationsWithDependencies, onValid
 	}, [district, setValue, clearErrors]);
 
 	return (
-		<form className="flex flex-col gap-8" onSubmit={handleSubmit((data) => onValidFormSubmit(data as LocationFormularValues))}>
+		<form className="flex flex-col gap-8">
 			<Dropdown label={getLabel("association")} error={getErrors("association")} {...register("association")}>
 				<option></option>
 				{associationsWithDependencies.map((association) => (
@@ -64,11 +62,6 @@ export default function LocationFormular({ associationsWithDependencies, onValid
 					<option key={local.id}>{local.name}</option>
 				))}
 			</Dropdown>
-
-			<Button className="w-fit self-end" type="submit" disabled={!formState.isValid}>
-				{t("location.submit")}
-				<ArrowRightCircleIcon className="h-4 w-4" />
-			</Button>
 		</form>
 	);
 }
