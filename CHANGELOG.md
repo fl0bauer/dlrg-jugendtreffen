@@ -1,3 +1,12 @@
+# [1.5.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.4.0...v1.5.0) (2023-04-11)
+
+
+### Features
+
+* **components:** add `chip` component ([1d2b774](https://github.com/fl0bauer/drlg-event-registration-form/commit/1d2b7745a57993ec9182ce41ecdb2e1d9c60ecbe))
+* **components:** add `table` component ([6580120](https://github.com/fl0bauer/drlg-event-registration-form/commit/65801209e18791459090e96a20438c751706a5f3))
+* **formulars:** add participants formular ([0d9aff8](https://github.com/fl0bauer/drlg-event-registration-form/commit/0d9aff805d5629f260155f7675b4b2ffad3f8058)), closes [#21](https://github.com/fl0bauer/drlg-event-registration-form/issues/21)
+
 # [1.4.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.3.0...v1.4.0) (2023-04-10)
 
 
