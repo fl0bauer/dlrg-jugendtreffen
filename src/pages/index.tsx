@@ -9,11 +9,12 @@ import Button from "@/components/button.component";
 import Step from "@/components/step.component";
 import Heading from "@/components/heading.component";
 import { FormProvider, useForm } from "react-hook-form";
-import LocationFormular from "@/formulars/location/location-formular.component";
-import getLocationSchema from "@/formulars/location/location-formular.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import getSupervisorSchema from "@/formulars/supervisor/supervisor-formular.schema";
-import SupervisorFormular from "@/formulars/supervisor/supervisor-formular.component";
+import { participantSchema } from "@/schemas/participant.schema";
+import { locationSchema } from "@/schemas/location.schema";
+import LocationFormular from "@/formulars/location.formular";
+import SupervisorFormular from "@/formulars/supervisor-formular";
+import ParticipantsFormular from "@/formulars/participants.formular";
 
 export const getServerSideProps = async () => {
 	const associations = await fetchAssociations();
@@ -24,17 +25,15 @@ export const getServerSideProps = async () => {
 };
 
 const styles = {
-	step: "flex flex-col gap-8 w-full mx-auto max-w-2xl",
+	step: "flex flex-col gap-8",
 };
 
 export default function Home({ associations }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 	const { t } = useTranslation("forms");
 
-	const locationFormularSchema = getLocationSchema(associations);
-	const locationFormular = useForm({ resolver: zodResolver(locationFormularSchema), mode: "all" });
-
-	const supervisorFormularSchema = getSupervisorSchema();
-	const supervisorFormular = useForm({ resolver: zodResolver(supervisorFormularSchema), mode: "all" });
+	const locationFormular = useForm({ resolver: zodResolver(locationSchema(associations)), mode: "all" });
+	const supervisorFormular = useForm({ resolver: zodResolver(participantSchema), mode: "all" });
+	const participantsFormular = useForm({ resolver: zodResolver(participantSchema), mode: "all" });
 
 	return (
 		<>
@@ -74,6 +73,24 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 
 						<FormProvider {...supervisorFormular}>
 							<SupervisorFormular />
+						</FormProvider>
+					</Step>
+
+					<Step className={styles.step}>
+						<Heading heading={t("participants.heading")} description={t("participants.description")} />
+
+						<FormProvider {...participantsFormular}>
+							<ParticipantsFormular
+								supervisor={{
+									firstName: supervisorFormular.watch("firstName"),
+									lastName: supervisorFormular.watch("lastName"),
+									street: supervisorFormular.watch("street"),
+									zip: supervisorFormular.watch("zip"),
+									residence: supervisorFormular.watch("residence"),
+									phone: supervisorFormular.watch("phone"),
+									email: supervisorFormular.watch("email"),
+								}}
+							/>
 						</FormProvider>
 					</Step>
 				</Stepper>
