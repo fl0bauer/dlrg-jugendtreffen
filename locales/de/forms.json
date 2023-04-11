@@ -28,7 +28,39 @@
   },
   "supervisor": {
     "heading": "Hauptverantwortliche*r Betreuer*in",
-    "description": "Die / Der Betreuer*in muss vor Ort sein",
+    "description": "Die / Der Betreuer*in muss vor Ort sein"
+  },
+  "participants": {
+    "heading": "Teilnehmer*innen",
+    "description": "Liste aller Teilnehmer*innen",
+    "roles": {
+      "label": "",
+      "items": {
+        "supervisor": "Betreuer*in",
+        "participant": "Teilnehmer*in"
+      }
+    },
+    "name": {
+      "label": "Name"
+    },
+    "address": {
+      "label": "Adresse"
+    },
+    "phone": {
+      "label": "Handynummer"
+    },
+    "email": {
+      "label": "E-Mail"
+    },
+    "actions": {
+      "label": "",
+      "items": {
+        "add": "Teilnehmer*in hinzufügen",
+        "delete": "Löschen"
+      }
+    }
+  },
+  "participant": {
     "first-name": {
       "label": "Vorname",
       "errors": {
