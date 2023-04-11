@@ -2,7 +2,7 @@ import { FrameProps } from "@/types/frame.types";
 import classNames from "classnames";
 
 const styles = {
-	container: "isolate bg-white h-screen max-w-2xl mx-auto py-12 px-6 sm:py-24 lg:px-8",
+	container: "isolate bg-white min-h-screen max-w-5xl mx-auto py-12 px-6 sm:py-24 lg:px-8",
 	background: {
 		container: "absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]",
 		blur1: "relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]",

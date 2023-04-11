@@ -1,9 +1,9 @@
+import { AssociationWithDependencies } from "@/types/location.types";
 import { z } from "zod";
 import { getLocals } from "@/lib/location.lib";
-import { AssociationWithDependencies } from "@/types/location.types";
 
-export default function getSchema(associationsWithDependencies: AssociationWithDependencies[]) {
-	return z
+export const locationSchema = (associationsWithDependencies: AssociationWithDependencies[]) =>
+	z
 		.object({
 			association: z.string().nonempty("location.association.errors.required"),
 			district: z.string().nonempty("location.district.errors.required"),
@@ -23,4 +23,3 @@ export default function getSchema(associationsWithDependencies: AssociationWithD
 				message: "location.local.errors.required",
 			}
 		);
-}
