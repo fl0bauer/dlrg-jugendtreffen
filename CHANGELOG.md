@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.7.0...v1.8.0) (2023-04-12)
+
+
+### Features
+
+* **formulars:** add password formular ([b69ff74](https://github.com/fl0bauer/drlg-event-registration-form/commit/b69ff74585bd6aed5858ad478c13d89439458df6)), closes [#29](https://github.com/fl0bauer/drlg-event-registration-form/issues/29)
+
 # [1.7.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.6.0...v1.7.0) (2023-04-12)
 
 
