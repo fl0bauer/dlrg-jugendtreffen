@@ -8,7 +8,8 @@
       "meta"
     ],
     "/": [
-      "forms"
+      "forms",
+      "deadline"
     ]
   }
 }

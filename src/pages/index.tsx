@@ -34,13 +34,28 @@ const styles = {
 };
 
 export default function Home({ associations }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-	const { t } = useTranslation("forms");
+	const { t } = useTranslation();
 
 	const passwordFormular = useForm({ resolver: zodResolver(passwordSchema), mode: "all" });
 	const locationFormular = useForm({ resolver: zodResolver(locationSchema(associations)), mode: "all" });
 	const supervisorFormular = useForm({ resolver: zodResolver(supervisorSchema), mode: "all" });
 	const participantsFormular = useForm({ resolver: zodResolver(participantsSchema), mode: "all" });
 	const sepaFormular = useForm({ resolver: zodResolver(sepaSchema), mode: "all" });
+
+	const deadline = new Date(process.env.NEXT_PUBLIC_REGISTRATION_DEADLINE || "").getTime();
+	const now = new Date().getTime();
+
+	if (deadline > now) {
+		return (
+			<>
+				<Head />
+
+				<Frame className="flex justify-center items-center">
+					<Heading heading={t("deadline:heading")} description={t("deadline:description")} />
+				</Frame>
+			</>
+		);
+	}
 
 	return (
 		<>
@@ -51,24 +66,24 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 					previousStepButton={
 						<Button variant="secondary">
 							<ArrowLeftCircleIcon className="h-4 w-4" />
-							{t("general.previous-step")}
+							{t("forms:general.previous-step")}
 						</Button>
 					}
 					nextStepButton={
 						<Button>
-							{t("general.next-step")}
+							{t("forms:general.next-step")}
 							<ArrowRightCircleIcon className="h-4 w-4" />
 						</Button>
 					}
 					submitButton={
 						<Button>
-							{t("general.submit")}
+							{t("forms:general.submit")}
 							<CheckCircleIcon className="h-4 w-4" />
 						</Button>
 					}
 				>
 					<Step className={styles.step} disableNextStep={!passwordFormular.formState.isValid}>
-						<Heading heading={t("password.heading")} description={t("password.description")} />
+						<Heading heading={t("forms:password.heading")} description={t("forms:password.description")} />
 
 						<FormProvider {...passwordFormular}>
 							<PasswordFormular />
@@ -76,7 +91,7 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 					</Step>
 
 					<Step className={styles.step} disableNextStep={!locationFormular.formState.isValid}>
-						<Heading heading={t("location.heading")} description={t("location.description")} />
+						<Heading heading={t("forms:location.heading")} description={t("forms:location.description")} />
 
 						<FormProvider {...locationFormular}>
 							<LocationFormular associationsWithDependencies={associations} />
@@ -84,7 +99,7 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 					</Step>
 
 					<Step className={styles.step} disableNextStep={!supervisorFormular.formState.isValid}>
-						<Heading heading={t("supervisor.heading")} description={t("supervisor.description")} />
+						<Heading heading={t("forms:supervisor.heading")} description={t("forms:supervisor.description")} />
 
 						<FormProvider {...supervisorFormular}>
 							<SupervisorFormular />
@@ -92,7 +107,7 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 					</Step>
 
 					<Step className={styles.step}>
-						<Heading heading={t("participants.heading")} description={t("participants.description")} />
+						<Heading heading={t("forms:participants.heading")} description={t("forms:participants.description")} />
 
 						<FormProvider {...participantsFormular}>
 							<ParticipantsFormular
@@ -110,7 +125,7 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 					</Step>
 
 					<Step className={styles.step} disableNextStep={!sepaFormular.formState.isValid}>
-						<Heading heading={t("sepa.heading")} description={t("sepa.description")} />
+						<Heading heading={t("forms:sepa.heading")} description={t("forms:sepa.description")} />
 
 						<FormProvider {...sepaFormular}>
 							<SepaFormular />
