@@ -1,3 +1,17 @@
+# [1.6.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.5.0...v1.6.0) (2023-04-12)
+
+
+### Bug Fixes
+
+* **formulars:** clear value for boolean fields ([6fe48dd](https://github.com/fl0bauer/drlg-event-registration-form/commit/6fe48dd76489eba3ff2090e24d63591101b8b61a))
+
+
+### Features
+
+* **formulars:** add main supervisor chip ([eea828a](https://github.com/fl0bauer/drlg-event-registration-form/commit/eea828a471bbdb60b864e23b648ff8df816d0e1b))
+* **formulars:** add option to add secondary supervisors ([8bfc6eb](https://github.com/fl0bauer/drlg-event-registration-form/commit/8bfc6ebbfd89fa0a12de26e722c67b4e4300c926))
+* **formulars:** refine formular fields ([7202c27](https://github.com/fl0bauer/drlg-event-registration-form/commit/7202c27e8ccb1b81d5982bdebfce741bb3a3c6ec))
+
 # [1.5.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.4.0...v1.5.0) (2023-04-11)
 
 
