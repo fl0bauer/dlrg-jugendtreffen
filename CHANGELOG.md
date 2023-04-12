@@ -1,3 +1,15 @@
+# [1.10.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.9.0...v1.10.0) (2023-04-12)
+
+
+### Bug Fixes
+
+* deadline check ([e08a7e1](https://github.com/fl0bauer/drlg-event-registration-form/commit/e08a7e1342b6c09a910715a94d9d4d11b511fdf1))
+
+
+### Features
+
+* **formulars:** submit formulars to db ([c888457](https://github.com/fl0bauer/drlg-event-registration-form/commit/c888457927752d7a11b6337d58bb3bd03e036079))
+
 # [1.9.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.8.0...v1.9.0) (2023-04-12)
 
 
