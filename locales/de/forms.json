@@ -28,39 +28,7 @@
   },
   "supervisor": {
     "heading": "Hauptverantwortliche*r Betreuer*in",
-    "description": "Die / Der Betreuer*in muss vor Ort sein"
-  },
-  "participants": {
-    "heading": "Teilnehmer*innen",
-    "description": "Liste aller Teilnehmer*innen",
-    "roles": {
-      "label": "",
-      "items": {
-        "supervisor": "Betreuer*in",
-        "participant": "Teilnehmer*in"
-      }
-    },
-    "name": {
-      "label": "Name"
-    },
-    "address": {
-      "label": "Adresse"
-    },
-    "phone": {
-      "label": "Handynummer"
-    },
-    "email": {
-      "label": "E-Mail"
-    },
-    "actions": {
-      "label": "",
-      "items": {
-        "add": "Teilnehmer*in hinzufügen",
-        "delete": "Löschen"
-      }
-    }
-  },
-  "participant": {
+    "description": "Die / Der Betreuer*in muss vor Ort sein",
     "first-name": {
       "label": "Vorname",
       "errors": {
@@ -103,6 +71,62 @@
       "errors": {
         "required": "Bitte gebe eine E-Mail an",
         "email": "Bitte gebe eine valide E-Mail an"
+      }
+    }
+  },
+  "participants": {
+    "heading": "Teilnehmer*innen",
+    "description": "Liste aller Teilnehmer*innen",
+    "name": {
+      "label": "Name"
+    },
+    "first-name": {
+      "label": "Vorname",
+      "errors": {
+        "required": "Bitte gebe einen Vornamen an"
+      }
+    },
+    "last-name": {
+      "label": "Nachname",
+      "errors": {
+        "required": "Bitte gebe einen Nachnamen an"
+      }
+    },
+    "birthday": {
+      "label": "Geburtstag",
+      "errors": {
+        "required": "Bitte gebe ein valides Geburtstag an"
+      }
+    },
+    "vegetarian-food": {
+      "label": "Vegetarisches Essen"
+    },
+    "shirt-size": {
+      "label": "T-Shirt Größe",
+      "errors": {
+        "required": "Bitte gebe eine T-Shirt größe an"
+      }
+    },
+    "hoodie-size": {
+      "label": "Hoodie Größe",
+      "errors": {
+        "required": "Bitte gebe eine Hoodie größe an"
+      }
+    },
+    "roles": {
+      "label": "",
+      "items": {
+        "main-supervisor": "Hauptbetreuer*in",
+        "supervisor": "Betreuer*in",
+        "participant": "Teilnehmer*in"
+      }
+    },
+    "actions": {
+      "label": "",
+      "items": {
+        "add-supervisor": "Betreuer*in hinzufügen",
+        "add-participant": "Teilnehmer*in hinzufügen",
+        "delete": "Löschen"
       }
     }
   }

@@ -1,4 +1,4 @@
-export interface Participant {
+export interface Supervisor {
 	firstName: string;
 	lastName: string;
 	street: string;
@@ -8,12 +8,21 @@ export interface Participant {
 	email: string;
 }
 
+export interface Participant {
+	firstName: string;
+	lastName: string;
+	birthday: string;
+	shirtSize: string;
+	hoodieSize: string;
+	vegetarianFood: boolean;
+}
+
 export interface ParticipantsTableProps {
-	supervisor: Participant;
-	fields: (Participant & { id: string })[];
-	onRemove: (index: number) => void;
+	preSelectedSupervisors: Supervisor;
+	participants: (Participant & { id: string; isSecondarySupervisor: boolean })[];
+	onRemoveParticipant: (index: number) => void;
 }
 
 export interface ParticipantsFormularProps {
-	supervisor: ParticipantsTableProps["supervisor"];
+	supervisor: Supervisor;
 }

@@ -10,11 +10,12 @@ import Step from "@/components/step.component";
 import Heading from "@/components/heading.component";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { participantSchema } from "@/schemas/participant.schema";
 import { locationSchema } from "@/schemas/location.schema";
 import LocationFormular from "@/formulars/location.formular";
 import SupervisorFormular from "@/formulars/supervisor-formular";
 import ParticipantsFormular from "@/formulars/participants.formular";
+import { supervisorSchema } from "@/schemas/supervisor.schema";
+import { participantsSchema } from "@/schemas/participants.schema";
 
 export const getServerSideProps = async () => {
 	const associations = await fetchAssociations();
@@ -32,8 +33,8 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 	const { t } = useTranslation("forms");
 
 	const locationFormular = useForm({ resolver: zodResolver(locationSchema(associations)), mode: "all" });
-	const supervisorFormular = useForm({ resolver: zodResolver(participantSchema), mode: "all" });
-	const participantsFormular = useForm({ resolver: zodResolver(participantSchema), mode: "all" });
+	const supervisorFormular = useForm({ resolver: zodResolver(supervisorSchema), mode: "all" });
+	const participantsFormular = useForm({ resolver: zodResolver(participantsSchema), mode: "all" });
 
 	return (
 		<>
