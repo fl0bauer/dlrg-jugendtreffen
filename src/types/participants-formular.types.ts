@@ -9,11 +9,11 @@ export interface Participant {
 }
 
 export interface ParticipantsTableProps {
-	supervisor: Participant;
-	fields: (Participant & { id: string })[];
-	onRemove: (index: number) => void;
+	preSelectedSupervisors: Participant;
+	participants: (Participant & { id: string; isSecondarySupervisor: boolean })[];
+	onRemoveParticipant: (index: number) => void;
 }
 
 export interface ParticipantsFormularProps {
-	supervisor: ParticipantsTableProps["supervisor"];
+	supervisor: Participant;
 }

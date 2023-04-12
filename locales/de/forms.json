@@ -55,7 +55,8 @@
     "actions": {
       "label": "",
       "items": {
-        "add": "Teilnehmer*in hinzufügen",
+        "add-supervisor": "Betreuer*in hinzufügen",
+        "add-participant": "Teilnehmer*in hinzufügen",
         "delete": "Löschen"
       }
     }

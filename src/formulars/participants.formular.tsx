@@ -5,7 +5,7 @@ import { Table } from "@/components/table.component";
 import Button from "@/components/button.component";
 import { UserPlusIcon } from "@heroicons/react/24/outline";
 import Chip from "@/components/chip.component";
-import { ParticipantsFormularProps, ParticipantsTableProps } from "@/types/participants-formular.types";
+import { Participant, ParticipantsFormularProps, ParticipantsTableProps } from "@/types/participants-formular.types";
 
 const styles = {
 	container: "flex flex-col gap-4",
@@ -14,6 +14,7 @@ const styles = {
 	grid3: "grid grid-cols-3 gap-4",
 	link: "font-medium text-blue-600 cursor-pointer hover:underline",
 	linkDisabled: "font-medium text-gray-400 cursor-not-allowed",
+	actions: "flex self-end gap-4",
 	table: {
 		container: "overflow-x-auto",
 		columns: {
@@ -22,7 +23,7 @@ const styles = {
 	},
 };
 
-function ParticipantsTable({ supervisor, fields, onRemove }: ParticipantsTableProps) {
+function ParticipantsTable({ preSelectedSupervisors, participants, onRemoveParticipant }: ParticipantsTableProps) {
 	const { t } = useTranslation("forms");
 
 	return (
@@ -43,33 +44,31 @@ function ParticipantsTable({ supervisor, fields, onRemove }: ParticipantsTablePr
 							<Chip color="amber">{t("participants.roles.items.supervisor")}</Chip>
 						</Table.Column>
 						<Table.Column className={styles.table.columns.lead}>
-							{supervisor.firstName} {supervisor.lastName}
+							{preSelectedSupervisors.firstName} {preSelectedSupervisors.lastName}
 						</Table.Column>
 						<Table.Column>
-							{supervisor.street}, {supervisor.zip} {supervisor.residence}
+							{preSelectedSupervisors.street}, {preSelectedSupervisors.zip} {preSelectedSupervisors.residence}
 						</Table.Column>
-						<Table.Column>{supervisor.phone}</Table.Column>
-						<Table.Column>{supervisor.email}</Table.Column>
+						<Table.Column>{preSelectedSupervisors.phone}</Table.Column>
+						<Table.Column>{preSelectedSupervisors.email}</Table.Column>
 						<Table.Column>
 							<a className={styles.linkDisabled}>{t("participants.actions.items.delete")}</a>
 						</Table.Column>
 					</Table.Row>
 
-					{fields.map((field, index) => (
-						<Table.Row key={field.id}>
-							<Table.Column>
-								<Chip color="cyan">{t("participants.roles.items.participant")}</Chip>
-							</Table.Column>
+					{participants.map((participant, index) => (
+						<Table.Row key={participant.id}>
+							<Table.Column>{participant.isSecondarySupervisor ? <Chip color="amber">{t("participants.roles.items.supervisor")}</Chip> : <Chip color="cyan">{t("participants.roles.items.participant")}</Chip>}</Table.Column>
 							<Table.Column className={styles.table.columns.lead}>
-								{field.firstName} {field.lastName}
+								{participant.firstName} {participant.lastName}
 							</Table.Column>
 							<Table.Column>
-								{field.street}, {field.zip} {field.residence}
+								{participant.street}, {participant.zip} {participant.residence}
 							</Table.Column>
-							<Table.Column>{field.phone}</Table.Column>
-							<Table.Column>{field.email}</Table.Column>
+							<Table.Column>{participant.phone}</Table.Column>
+							<Table.Column>{participant.email}</Table.Column>
 							<Table.Column>
-								<a className={styles.link} onClick={() => onRemove(index)}>
+								<a className={styles.link} onClick={() => onRemoveParticipant(index)}>
 									{t("participants.actions.items.delete")}
 								</a>
 							</Table.Column>
@@ -84,7 +83,7 @@ function ParticipantsTable({ supervisor, fields, onRemove }: ParticipantsTablePr
 export default function ParticipantsFormular({ supervisor }: ParticipantsFormularProps) {
 	const { t } = useTranslation("forms");
 	const { control, register, formState, getValues, setValue } = useFormContext();
-	const { fields, append, remove } = useFieldArray({ control, name: "participant" });
+	const { fields, append, remove } = useFieldArray({ control, name: "participants" });
 
 	const getLabel = (name: string) => t(`participant.${name}.label`);
 	const getErrors = (name: string) => {
@@ -92,12 +91,14 @@ export default function ParticipantsFormular({ supervisor }: ParticipantsFormula
 		return error && t(error as string);
 	};
 
-	const addParticipant = () => append({ firstName: getValues("firstName"), lastName: getValues("lastName"), street: getValues("street"), zip: getValues("zip"), residence: getValues("residence"), phone: getValues("phone"), email: getValues("email") });
+	const getParticipant = () => ({ firstName: getValues("firstName"), lastName: getValues("lastName"), street: getValues("street"), zip: getValues("zip"), residence: getValues("residence"), phone: getValues("phone"), email: getValues("email") } as Participant);
+	const appendParticipant = (isSecondarySupervisor: boolean) => append({ ...getParticipant(), isSecondarySupervisor });
 	const clearValues = () => ["firstName", "lastName", "street", "zip", "residence", "phone", "email"].forEach((field) => setValue(field, ""));
+	const participants = (fields as ParticipantsTableProps["participants"]).sort((a, b) => (b.isSecondarySupervisor ? 1 : -1));
 
 	return (
 		<div className={styles.container}>
-			<ParticipantsTable supervisor={supervisor} fields={fields as ParticipantsTableProps["fields"]} onRemove={remove} />
+			<ParticipantsTable preSelectedSupervisors={supervisor} participants={participants} onRemoveParticipant={remove} />
 
 			<form className={styles.form}>
 				<div className={styles.grid2}>
@@ -116,18 +117,33 @@ export default function ParticipantsFormular({ supervisor }: ParticipantsFormula
 					<Input label={getLabel("email")} error={getErrors("email")} {...register("email")} />
 				</div>
 
-				<Button
-					variant="secondary"
-					disabled={!formState.isValid}
-					onClick={(event) => {
-						event.preventDefault();
-						addParticipant();
-						clearValues();
-					}}
-				>
-					<UserPlusIcon className="h-4 w-4" />
-					{t("participants.actions.items.add")}
-				</Button>
+				<div className={styles.actions}>
+					<Button
+						variant="secondary"
+						disabled={!formState.isValid}
+						onClick={(event) => {
+							event.preventDefault();
+							appendParticipant(true);
+							clearValues();
+						}}
+					>
+						<UserPlusIcon className="h-4 w-4" />
+						{t("participants.actions.items.add-supervisor")}
+					</Button>
+
+					<Button
+						variant="secondary"
+						disabled={!formState.isValid}
+						onClick={(event) => {
+							event.preventDefault();
+							appendParticipant(false);
+							clearValues();
+						}}
+					>
+						<UserPlusIcon className="h-4 w-4" />
+						{t("participants.actions.items.add-participant")}
+					</Button>
+				</div>
 			</form>
 		</div>
 	);
