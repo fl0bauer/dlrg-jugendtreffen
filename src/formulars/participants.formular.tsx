@@ -3,9 +3,11 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 import Input from "@/components/input.component";
 import { Table } from "@/components/table.component";
 import Button from "@/components/button.component";
-import { UserPlusIcon } from "@heroicons/react/24/outline";
+import { CheckBadgeIcon, UserPlusIcon } from "@heroicons/react/24/outline";
 import Chip from "@/components/chip.component";
 import { Participant, ParticipantsFormularProps, ParticipantsTableProps } from "@/types/participants-formular.types";
+import Checkbox from "@/components/checkbox.component";
+import Dropdown from "@/components/dropdown.component";
 
 const styles = {
 	container: "flex flex-col gap-4",
@@ -32,9 +34,10 @@ function ParticipantsTable({ preSelectedSupervisors, participants, onRemoveParti
 				<Table.Head>
 					<Table.HeadColumn>{t("participants.roles.label")}</Table.HeadColumn>
 					<Table.HeadColumn>{t("participants.name.label")}</Table.HeadColumn>
-					<Table.HeadColumn>{t("participants.address.label")}</Table.HeadColumn>
-					<Table.HeadColumn>{t("participants.phone.label")}</Table.HeadColumn>
-					<Table.HeadColumn>{t("participants.email.label")}</Table.HeadColumn>
+					<Table.HeadColumn>{t("participants.birthday.label")}</Table.HeadColumn>
+					<Table.HeadColumn>{t("participants.shirt-size.label")}</Table.HeadColumn>
+					<Table.HeadColumn>{t("participants.hoodie-size.label")}</Table.HeadColumn>
+					<Table.HeadColumn>{t("participants.vegetarian-food.label")}</Table.HeadColumn>
 					<Table.HeadColumn>{t("participants.actions.label")}</Table.HeadColumn>
 				</Table.Head>
 
@@ -46,11 +49,10 @@ function ParticipantsTable({ preSelectedSupervisors, participants, onRemoveParti
 						<Table.Column className={styles.table.columns.lead}>
 							{preSelectedSupervisors.firstName} {preSelectedSupervisors.lastName}
 						</Table.Column>
-						<Table.Column>
-							{preSelectedSupervisors.street}, {preSelectedSupervisors.zip} {preSelectedSupervisors.residence}
-						</Table.Column>
-						<Table.Column>{preSelectedSupervisors.phone}</Table.Column>
-						<Table.Column>{preSelectedSupervisors.email}</Table.Column>
+						<Table.Column>-</Table.Column>
+						<Table.Column>-</Table.Column>
+						<Table.Column>-</Table.Column>
+						<Table.Column>-</Table.Column>
 						<Table.Column>
 							<a className={styles.linkDisabled}>{t("participants.actions.items.delete")}</a>
 						</Table.Column>
@@ -62,11 +64,10 @@ function ParticipantsTable({ preSelectedSupervisors, participants, onRemoveParti
 							<Table.Column className={styles.table.columns.lead}>
 								{participant.firstName} {participant.lastName}
 							</Table.Column>
-							<Table.Column>
-								{participant.street}, {participant.zip} {participant.residence}
-							</Table.Column>
-							<Table.Column>{participant.phone}</Table.Column>
-							<Table.Column>{participant.email}</Table.Column>
+							<Table.Column>{participant.birthday}</Table.Column>
+							<Table.Column>{participant.shirtSize}</Table.Column>
+							<Table.Column>{participant.hoodieSize}</Table.Column>
+							<Table.Column>{participant.vegetarianFood && <CheckBadgeIcon className="h-4 w-4" />}</Table.Column>
 							<Table.Column>
 								<a className={styles.link} onClick={() => onRemoveParticipant(index)}>
 									{t("participants.actions.items.delete")}
@@ -85,15 +86,17 @@ export default function ParticipantsFormular({ supervisor }: ParticipantsFormula
 	const { control, register, formState, getValues, setValue } = useFormContext();
 	const { fields, append, remove } = useFieldArray({ control, name: "participants" });
 
-	const getLabel = (name: string) => t(`participant.${name}.label`);
+	const sizes = ["S", "M", "L", "XL", "XXL"];
+
+	const getLabel = (name: string) => t(`participants.${name}.label`);
 	const getErrors = (name: string) => {
 		const error = formState?.errors?.[name]?.message;
 		return error && t(error as string);
 	};
 
-	const getParticipant = () => ({ firstName: getValues("firstName"), lastName: getValues("lastName"), street: getValues("street"), zip: getValues("zip"), residence: getValues("residence"), phone: getValues("phone"), email: getValues("email") } as Participant);
+	const getParticipant = () => ({ firstName: getValues("firstName"), lastName: getValues("lastName"), birthday: getValues("birthday"), shirtSize: getValues("shirtSize"), hoodieSize: getValues("hoodieSize"), vegetarianFood: getValues("vegetarianFood") } as Participant);
 	const appendParticipant = (isSecondarySupervisor: boolean) => append({ ...getParticipant(), isSecondarySupervisor });
-	const clearValues = () => ["firstName", "lastName", "street", "zip", "residence", "phone", "email"].forEach((field) => setValue(field, ""));
+	const clearValues = () => ["firstName", "lastName", "birthday", "shirtSize", "hoodieSize", "vegetarianFood"].forEach((field) => setValue(field, ""));
 	const participants = (fields as ParticipantsTableProps["participants"]).sort((a, b) => (b.isSecondarySupervisor ? 1 : -1));
 
 	return (
@@ -101,20 +104,29 @@ export default function ParticipantsFormular({ supervisor }: ParticipantsFormula
 			<ParticipantsTable preSelectedSupervisors={supervisor} participants={participants} onRemoveParticipant={remove} />
 
 			<form className={styles.form}>
-				<div className={styles.grid2}>
+				<div className={styles.grid3}>
 					<Input label={getLabel("first-name")} error={getErrors("firstName")} {...register("firstName")} />
 					<Input label={getLabel("last-name")} error={getErrors("lastName")} {...register("lastName")} />
-				</div>
-
-				<div className={styles.grid3}>
-					<Input label={getLabel("street")} error={getErrors("street")} {...register("street")} />
-					<Input label={getLabel("zip")} error={getErrors("zip")} {...register("zip")} />
-					<Input label={getLabel("residence")} error={getErrors("residence")} {...register("residence")} />
+					<Input type="date" label={getLabel("birthday")} error={getErrors("birthday")} {...register("birthday")} />
 				</div>
 
 				<div className={styles.grid2}>
-					<Input label={getLabel("phone")} error={getErrors("phone")} {...register("phone")} />
-					<Input label={getLabel("email")} error={getErrors("email")} {...register("email")} />
+					<Dropdown label={getLabel("shirt-size")} error={getErrors("shirtSize")} {...register("shirtSize")}>
+						<option></option>
+						{sizes.map((size) => (
+							<option key={size}>{size}</option>
+						))}
+					</Dropdown>
+					<Dropdown label={getLabel("hoodie-size")} error={getErrors("hoodieSize")} {...register("hoodieSize")}>
+						<option></option>
+						{sizes.map((size) => (
+							<option key={size}>{size}</option>
+						))}
+					</Dropdown>
+				</div>
+
+				<div>
+					<Checkbox label={getLabel("vegetarian-food")} error={getErrors("vegetarianFood")} {...register("vegetarianFood")} />
 				</div>
 
 				<div className={styles.actions}>

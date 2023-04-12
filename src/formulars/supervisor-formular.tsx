@@ -12,7 +12,7 @@ export default function SupervisorFormular() {
 	const { t } = useTranslation("forms");
 	const { register, formState } = useFormContext();
 
-	const getLabel = (name: string) => t(`participant.${name}.label`);
+	const getLabel = (name: string) => t(`supervisor.${name}.label`);
 	const getErrors = (name: string) => {
 		const error = formState?.errors?.[name]?.message;
 		return error && t(error as string);
