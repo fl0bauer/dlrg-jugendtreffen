@@ -4,6 +4,16 @@
     "next-step": "Nächster Schritt",
     "submit": "Registrieren"
   },
+  "password": {
+    "heading": "Passwort eingabe",
+    "description": "Gebe das Passwort ein um mit der Registrierung fortzufahren",
+    "password": {
+      "label": "Passwort",
+      "errors": {
+        "invalid": "Passwort nicht korrekt"
+      }
+    }
+  },
   "location": {
     "heading": "Landesverband",
     "description": "Bitte wähle einen Landesverband, Bezirk und ggf. eine Ortsgruppe",

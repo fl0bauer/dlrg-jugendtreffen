@@ -18,6 +18,8 @@ import { supervisorSchema } from "@/schemas/supervisor.schema";
 import { participantsSchema } from "@/schemas/participants.schema";
 import { sepaSchema } from "@/schemas/sepa.schema";
 import SepaFormular from "@/formulars/sepa.formular";
+import { passwordSchema } from "@/schemas/password.schema";
+import PasswordFormular from "@/formulars/password.formular";
 
 export const getServerSideProps = async () => {
 	const associations = await fetchAssociations();
@@ -34,6 +36,7 @@ const styles = {
 export default function Home({ associations }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 	const { t } = useTranslation("forms");
 
+	const passwordFormular = useForm({ resolver: zodResolver(passwordSchema), mode: "all" });
 	const locationFormular = useForm({ resolver: zodResolver(locationSchema(associations)), mode: "all" });
 	const supervisorFormular = useForm({ resolver: zodResolver(supervisorSchema), mode: "all" });
 	const participantsFormular = useForm({ resolver: zodResolver(participantsSchema), mode: "all" });
@@ -64,6 +67,14 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 						</Button>
 					}
 				>
+					<Step className={styles.step} disableNextStep={!passwordFormular.formState.isValid}>
+						<Heading heading={t("password.heading")} description={t("password.description")} />
+
+						<FormProvider {...passwordFormular}>
+							<PasswordFormular />
+						</FormProvider>
+					</Step>
+
 					<Step className={styles.step} disableNextStep={!locationFormular.formState.isValid}>
 						<Heading heading={t("location.heading")} description={t("location.description")} />
 
