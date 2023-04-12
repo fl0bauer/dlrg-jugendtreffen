@@ -45,7 +45,7 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 	const deadline = new Date(process.env.NEXT_PUBLIC_REGISTRATION_DEADLINE || "").getTime();
 	const now = new Date().getTime();
 
-	if (deadline > now) {
+	if (deadline < now) {
 		return (
 			<>
 				<Head />
