@@ -16,6 +16,8 @@ import SupervisorFormular from "@/formulars/supervisor-formular";
 import ParticipantsFormular from "@/formulars/participants.formular";
 import { supervisorSchema } from "@/schemas/supervisor.schema";
 import { participantsSchema } from "@/schemas/participants.schema";
+import { sepaSchema } from "@/schemas/sepa.schema";
+import SepaFormular from "@/formulars/sepa.formular";
 
 export const getServerSideProps = async () => {
 	const associations = await fetchAssociations();
@@ -35,6 +37,7 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 	const locationFormular = useForm({ resolver: zodResolver(locationSchema(associations)), mode: "all" });
 	const supervisorFormular = useForm({ resolver: zodResolver(supervisorSchema), mode: "all" });
 	const participantsFormular = useForm({ resolver: zodResolver(participantsSchema), mode: "all" });
+	const sepaFormular = useForm({ resolver: zodResolver(sepaSchema), mode: "all" });
 
 	return (
 		<>
@@ -92,6 +95,14 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 									email: supervisorFormular.watch("email"),
 								}}
 							/>
+						</FormProvider>
+					</Step>
+
+					<Step className={styles.step} disableNextStep={!sepaFormular.formState.isValid}>
+						<Heading heading={t("sepa.heading")} description={t("sepa.description")} />
+
+						<FormProvider {...sepaFormular}>
+							<SepaFormular />
 						</FormProvider>
 					</Step>
 				</Stepper>
