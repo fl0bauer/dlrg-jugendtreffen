@@ -161,7 +161,7 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 						</Button>
 					}
 					submitButton={
-						<Button>
+						<Button disabled={submitStatus === "loading"}>
 							{t("forms:general.submit")}
 							{submitStatus === "loading" ? <Spinner color="blue" screenReaderText="Loading" /> : <CheckCircleIcon className="h-4 w-4" />}
 						</Button>
