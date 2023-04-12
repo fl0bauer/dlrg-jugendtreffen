@@ -1,3 +1,11 @@
+# [1.7.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.6.0...v1.7.0) (2023-04-12)
+
+
+### Features
+
+* **formulars:** add sepa formular ([2ab943a](https://github.com/fl0bauer/drlg-event-registration-form/commit/2ab943a4358e0f41df056ad729144b12e5011e26)), closes [#24](https://github.com/fl0bauer/drlg-event-registration-form/issues/24)
+* **formulars:** add sepa formular ([9b76a91](https://github.com/fl0bauer/drlg-event-registration-form/commit/9b76a916257b88a7947560aacf9a5d4c2483d0db)), closes [#24](https://github.com/fl0bauer/drlg-event-registration-form/issues/24)
+
 # [1.6.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.5.0...v1.6.0) (2023-04-12)
 
 
