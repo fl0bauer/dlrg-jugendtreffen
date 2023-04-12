@@ -116,6 +116,7 @@
     "roles": {
       "label": "",
       "items": {
+        "main-supervisor": "Hauptbetreuer*in",
         "supervisor": "Betreuer*in",
         "participant": "Teilnehmer*in"
       }

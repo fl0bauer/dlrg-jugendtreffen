@@ -44,7 +44,7 @@ function ParticipantsTable({ preSelectedSupervisors, participants, onRemoveParti
 				<Table.Body>
 					<Table.Row>
 						<Table.Column>
-							<Chip color="amber">{t("participants.roles.items.supervisor")}</Chip>
+							<Chip color="fuchsia">{t("participants.roles.items.main-supervisor")}</Chip>
 						</Table.Column>
 						<Table.Column className={styles.table.columns.lead}>
 							{preSelectedSupervisors.firstName} {preSelectedSupervisors.lastName}

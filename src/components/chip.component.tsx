@@ -5,6 +5,7 @@ const styles = {
 	base: "w-fit text-xs font-medium select-none border rounded-full px-2 py-0.5",
 	amber: "text-amber-800 border-amber-400 bg-amber-200",
 	cyan: "text-cyan-800 border-cyan-400 bg-cyan-200",
+	fuchsia: "text-fuchsia-800 border-fuchsia-400 bg-fuchsia-200",
 };
 
 export default function Chip({ children, color, className, ...props }: ChipProps) {
