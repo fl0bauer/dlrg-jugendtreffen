@@ -96,7 +96,10 @@ export default function ParticipantsFormular({ supervisor }: ParticipantsFormula
 
 	const getParticipant = () => ({ firstName: getValues("firstName"), lastName: getValues("lastName"), birthday: getValues("birthday"), shirtSize: getValues("shirtSize"), hoodieSize: getValues("hoodieSize"), vegetarianFood: getValues("vegetarianFood") } as Participant);
 	const appendParticipant = (isSecondarySupervisor: boolean) => append({ ...getParticipant(), isSecondarySupervisor });
-	const clearValues = () => ["firstName", "lastName", "birthday", "shirtSize", "hoodieSize", "vegetarianFood"].forEach((field) => setValue(field, ""));
+	const clearValues = () => {
+		["firstName", "lastName", "birthday", "shirtSize", "hoodieSize"].forEach((field) => setValue(field, ""));
+		["vegetarianFood"].forEach((field) => setValue(field, false));
+	};
 	const participants = (fields as ParticipantsTableProps["participants"]).sort((a, b) => (b.isSecondarySupervisor ? 1 : -1));
 
 	return (
