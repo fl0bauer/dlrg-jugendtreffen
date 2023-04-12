@@ -9,7 +9,8 @@
     ],
     "/": [
       "forms",
-      "deadline"
+      "deadline",
+      "registration"
     ]
   }
 }

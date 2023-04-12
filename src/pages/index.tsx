@@ -4,7 +4,7 @@ import { fetchAssociations } from "@/prisma/location";
 import Frame from "@/components/frame.component";
 import useTranslation from "next-translate/useTranslation";
 import Stepper from "@/components/stepper.component";
-import { ArrowLeftCircleIcon, ArrowRightCircleIcon, CheckCircleIcon } from "@heroicons/react/24/outline";
+import { ArrowLeftCircleIcon, ArrowPathIcon, ArrowRightCircleIcon, CheckCircleIcon } from "@heroicons/react/24/outline";
 import Button from "@/components/button.component";
 import Step from "@/components/step.component";
 import Heading from "@/components/heading.component";
@@ -20,6 +20,11 @@ import { sepaSchema } from "@/schemas/sepa.schema";
 import SepaFormular from "@/formulars/sepa.formular";
 import { passwordSchema } from "@/schemas/password.schema";
 import PasswordFormular from "@/formulars/password.formular";
+import { Participant } from "@/types/participants-formular.types";
+import { Prisma } from ".prisma/client";
+import { useState } from "react";
+import Spinner from "@/components/spinner.component";
+import RegistrationCreateInput = Prisma.RegistrationCreateInput;
 
 export const getServerSideProps = async () => {
 	const associations = await fetchAssociations();
@@ -36,6 +41,8 @@ const styles = {
 export default function Home({ associations }: InferGetServerSidePropsType<typeof getServerSideProps>) {
 	const { t } = useTranslation();
 
+	const [submitStatus, setSubmitStatus] = useState<"none" | "loading" | "success" | "error">("none");
+
 	const passwordFormular = useForm({ resolver: zodResolver(passwordSchema), mode: "all" });
 	const locationFormular = useForm({ resolver: zodResolver(locationSchema(associations)), mode: "all" });
 	const supervisorFormular = useForm({ resolver: zodResolver(supervisorSchema), mode: "all" });
@@ -45,6 +52,56 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 	const deadline = new Date(process.env.NEXT_PUBLIC_REGISTRATION_DEADLINE || "").getTime();
 	const now = new Date().getTime();
 
+	const onRegister = async () => {
+		setSubmitStatus("loading");
+
+		try {
+			const locationValues = locationFormular.getValues();
+			const supervisorValues = supervisorFormular.getValues();
+			const participantsValues = participantsFormular.getValues();
+			const sepaValues = sepaFormular.getValues();
+
+			const registration: RegistrationCreateInput = {
+				location: {
+					association: locationValues.association,
+					district: locationValues.district,
+					local: locationValues.local,
+				},
+				supervisor: {
+					firstName: supervisorValues.firstName,
+					lastName: supervisorValues.lastName,
+					address: `${supervisorValues.street}, ${supervisorValues.zip} ${supervisorValues.residence}`,
+					phone: supervisorValues.phone,
+					email: supervisorValues.email,
+				},
+				participants: (participantsValues.participants as (Participant & { isSecondarySupervisor: boolean })[]).map((participant) => ({
+					isSecondarySupervisor: participant.isSecondarySupervisor,
+					firstName: participant.firstName,
+					lastName: participant.lastName,
+					birthday: participant.birthday,
+					shirtSize: participant.shirtSize,
+					hoodieSize: participant.hoodieSize,
+					vegetarianFood: participant.vegetarianFood,
+				})),
+				bank: {
+					accountOwner: sepaValues.accountOwner,
+					address: `${sepaValues.street}, ${sepaValues.zip} ${sepaValues.residence}`,
+					creditInstitution: sepaValues.creditInstitution,
+					iban: sepaValues.iban,
+				},
+			};
+
+			const response = await fetch("/api/register", {
+				method: "POST",
+				body: JSON.stringify(registration),
+			});
+
+			setSubmitStatus(response.ok ? "success" : "error");
+		} catch (error) {
+			setSubmitStatus("error");
+		}
+	};
+
 	if (deadline < now) {
 		return (
 			<>
@@ -52,6 +109,34 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 
 				<Frame className="flex justify-center items-center">
 					<Heading heading={t("deadline:heading")} description={t("deadline:description")} />
+				</Frame>
+			</>
+		);
+	}
+
+	if (submitStatus === "success") {
+		return (
+			<>
+				<Head />
+
+				<Frame className="flex justify-center items-center">
+					<Heading heading={t("registration:success.heading")} description={t("registration:success.description")} />
+				</Frame>
+			</>
+		);
+	}
+
+	if (submitStatus === "error") {
+		return (
+			<>
+				<Head />
+
+				<Frame className="flex flex-col gap-4 justify-center items-center">
+					<Heading heading={t("registration:error.heading")} description={t("registration:error.description")} />
+					<Button onClick={() => (window.location.href = "/")}>
+						<ArrowPathIcon className="h-4 w-4" />
+						{t("registration:error.retry")}
+					</Button>
 				</Frame>
 			</>
 		);
@@ -78,7 +163,7 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 					submitButton={
 						<Button>
 							{t("forms:general.submit")}
-							<CheckCircleIcon className="h-4 w-4" />
+							{submitStatus === "loading" ? <Spinner color="blue" screenReaderText="Loading" /> : <CheckCircleIcon className="h-4 w-4" />}
 						</Button>
 					}
 				>
@@ -124,7 +209,7 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 						</FormProvider>
 					</Step>
 
-					<Step className={styles.step} disableNextStep={!sepaFormular.formState.isValid}>
+					<Step className={styles.step} disableNextStep={!sepaFormular.formState.isValid} onNextStep={onRegister}>
 						<Heading heading={t("forms:sepa.heading")} description={t("forms:sepa.description")} />
 
 						<FormProvider {...sepaFormular}>

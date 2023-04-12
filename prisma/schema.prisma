@@ -30,3 +30,42 @@ model Local {
   district   District? @relation(fields: [districtId], references: [id])
   districtId String?   @db.ObjectId
 }
+
+type Location {
+  association String
+  district    String
+  local       String?
+}
+
+type Supervisor {
+  firstName String
+  lastName  String
+  address   String
+  phone     String
+  email     String
+}
+
+type Participant {
+  isSecondarySupervisor Boolean
+  firstName             String
+  lastName              String
+  birthday              String
+  shirtSize             String
+  hoodieSize            String
+  vegetarianFood        Boolean
+}
+
+type Bank {
+  accountOwner      String
+  address           String
+  creditInstitution String
+  iban              String
+}
+
+model Registration {
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  location     Location
+  supervisor   Supervisor
+  participants Participant[]
+  bank         Bank
+}
