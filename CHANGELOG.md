@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.8.0...v1.9.0) (2023-04-12)
+
+
+### Features
+
+* add deadline ([c766bc2](https://github.com/fl0bauer/drlg-event-registration-form/commit/c766bc2566cd4e5b3ccd1066bd1642029278cc7f)), closes [#26](https://github.com/fl0bauer/drlg-event-registration-form/issues/26)
+
 # [1.8.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.7.0...v1.8.0) (2023-04-12)
 
 
