@@ -109,19 +109,13 @@
       }
     },
     "vegetarian-food": {
-      "label": "Vegetarisches Essen"
+      "label": "Vegetarisches Essen (optional)"
     },
     "shirt-size": {
-      "label": "T-Shirt Größe",
-      "errors": {
-        "required": "Bitte gebe eine T-Shirt größe an"
-      }
+      "label": "T-Shirt Größe (optional)"
     },
     "hoodie-size": {
-      "label": "Hoodie Größe",
-      "errors": {
-        "required": "Bitte gebe eine Hoodie größe an"
-      }
+      "label": "Hoodie Größe"
     },
     "roles": {
       "label": "",

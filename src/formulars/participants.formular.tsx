@@ -3,7 +3,7 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 import Input from "@/components/input.component";
 import { Table } from "@/components/table.component";
 import Button from "@/components/button.component";
-import { CheckBadgeIcon, UserPlusIcon } from "@heroicons/react/24/outline";
+import { CheckIcon, UserPlusIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Chip from "@/components/chip.component";
 import { Participant, ParticipantsFormularProps, ParticipantsTableProps } from "@/types/participants-formular.types";
 import Checkbox from "@/components/checkbox.component";
@@ -65,9 +65,9 @@ function ParticipantsTable({ preSelectedSupervisors, participants, onRemoveParti
 								{participant.firstName} {participant.lastName}
 							</Table.Column>
 							<Table.Column>{participant.birthday}</Table.Column>
-							<Table.Column>{participant.shirtSize}</Table.Column>
-							<Table.Column>{participant.hoodieSize}</Table.Column>
-							<Table.Column>{participant.vegetarianFood && <CheckBadgeIcon className="h-4 w-4" />}</Table.Column>
+							<Table.Column>{participant.shirtSize || "-"}</Table.Column>
+							<Table.Column>{participant.hoodieSize || "-"}</Table.Column>
+							<Table.Column>{participant.vegetarianFood ? <CheckIcon className="h-4 w-4 text-green-500" /> : <XMarkIcon className="h-4 w-4 text-rose-500" />}</Table.Column>
 							<Table.Column>
 								<a className={styles.link} onClick={() => onRemoveParticipant(index)}>
 									{t("participants.actions.items.delete")}

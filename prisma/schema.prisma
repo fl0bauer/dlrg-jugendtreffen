@@ -50,8 +50,8 @@ type Participant {
   firstName             String
   lastName              String
   birthday              String
-  shirtSize             String
-  hoodieSize            String
+  shirtSize             String?
+  hoodieSize            String?
   vegetarianFood        Boolean
 }
 
