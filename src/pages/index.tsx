@@ -165,7 +165,7 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 						</Button>
 					}
 					submitButton={
-						<Button disabled={submitStatus === "loading"}>
+						<Button>
 							{t("forms:general.submit")}
 							{submitStatus === "loading" ? <Spinner color="blue" screenReaderText="Loading" /> : <CheckCircleIcon className="h-4 w-4" />}
 						</Button>
@@ -217,7 +217,7 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 						</FormProvider>
 					</Step>
 
-					<Step className={styles.step} disableNextStep={!sepaFormular.formState.isValid} onNextStep={onRegister}>
+					<Step className={styles.step} disableNextStep={!sepaFormular.formState.isValid || submitStatus === "loading"} onNextStep={onRegister}>
 						<Heading heading={t("forms:sepa.heading")} description={t("forms:sepa.description")} />
 
 						<FormProvider {...sepaFormular}>
