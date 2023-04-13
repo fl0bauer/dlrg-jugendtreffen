@@ -1,3 +1,10 @@
+## [1.11.1](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.11.0...v1.11.1) (2023-04-13)
+
+
+### Bug Fixes
+
+* **formulars:** submit disabling ([b8af718](https://github.com/fl0bauer/drlg-event-registration-form/commit/b8af718342d6454d86d649fcc805ca7e2104f688))
+
 # [1.11.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.10.0...v1.11.0) (2023-04-12)
 
 
