@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.10.0...v1.11.0) (2023-04-12)
+
+
+### Features
+
+* **formulars:** disable submit button when submitting ([27d73c2](https://github.com/fl0bauer/drlg-event-registration-form/commit/27d73c2a7ffde402939790bff7b6a6be44677ae7))
+
 # [1.10.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.9.0...v1.10.0) (2023-04-12)
 
 
