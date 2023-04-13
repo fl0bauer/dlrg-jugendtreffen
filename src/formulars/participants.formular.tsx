@@ -8,6 +8,7 @@ import Chip from "@/components/chip.component";
 import { Participant, ParticipantsFormularProps, ParticipantsTableProps } from "@/types/participants-formular.types";
 import Checkbox from "@/components/checkbox.component";
 import Dropdown from "@/components/dropdown.component";
+import { SIZES } from "@/config/clothing-sizes.config";
 
 const styles = {
 	container: "flex flex-col gap-4",
@@ -27,6 +28,9 @@ const styles = {
 
 function ParticipantsTable({ preSelectedSupervisors, participants, onRemoveParticipant }: ParticipantsTableProps) {
 	const { t } = useTranslation("forms");
+
+	const Check = <CheckIcon className="h-4 w-4 text-green-500" />;
+	const Cross = <XMarkIcon className="h-4 w-4 text-rose-500" />;
 
 	return (
 		<div className={styles.table.container}>
@@ -49,10 +53,10 @@ function ParticipantsTable({ preSelectedSupervisors, participants, onRemoveParti
 						<Table.Column className={styles.table.columns.lead}>
 							{preSelectedSupervisors.firstName} {preSelectedSupervisors.lastName}
 						</Table.Column>
-						<Table.Column>-</Table.Column>
-						<Table.Column>-</Table.Column>
-						<Table.Column>-</Table.Column>
-						<Table.Column>-</Table.Column>
+						<Table.Column>{preSelectedSupervisors.birthday}</Table.Column>
+						<Table.Column>{preSelectedSupervisors.shirtSize || "-"}</Table.Column>
+						<Table.Column>{preSelectedSupervisors.hoodieSize || "-"}</Table.Column>
+						<Table.Column>{preSelectedSupervisors.vegetarianFood ? Check : Cross}</Table.Column>
 						<Table.Column>
 							<a className={styles.linkDisabled}>{t("participants.actions.items.delete")}</a>
 						</Table.Column>
@@ -67,7 +71,7 @@ function ParticipantsTable({ preSelectedSupervisors, participants, onRemoveParti
 							<Table.Column>{participant.birthday}</Table.Column>
 							<Table.Column>{participant.shirtSize || "-"}</Table.Column>
 							<Table.Column>{participant.hoodieSize || "-"}</Table.Column>
-							<Table.Column>{participant.vegetarianFood ? <CheckIcon className="h-4 w-4 text-green-500" /> : <XMarkIcon className="h-4 w-4 text-rose-500" />}</Table.Column>
+							<Table.Column>{participant.vegetarianFood ? Check : Cross}</Table.Column>
 							<Table.Column>
 								<a className={styles.link} onClick={() => onRemoveParticipant(index)}>
 									{t("participants.actions.items.delete")}
@@ -85,8 +89,6 @@ export default function ParticipantsFormular({ supervisor }: ParticipantsFormula
 	const { t } = useTranslation("forms");
 	const { control, register, formState, getValues, setValue } = useFormContext();
 	const { fields, append, remove } = useFieldArray({ control, name: "participants" });
-
-	const sizes = ["S", "M", "L", "XL", "XXL"];
 
 	const getLabel = (name: string) => t(`participants.${name}.label`);
 	const getErrors = (name: string) => {
@@ -116,13 +118,13 @@ export default function ParticipantsFormular({ supervisor }: ParticipantsFormula
 				<div className={styles.grid2}>
 					<Dropdown label={getLabel("shirt-size")} error={getErrors("shirtSize")} {...register("shirtSize")}>
 						<option></option>
-						{sizes.map((size) => (
+						{SIZES.map((size) => (
 							<option key={size}>{size}</option>
 						))}
 					</Dropdown>
 					<Dropdown label={getLabel("hoodie-size")} error={getErrors("hoodieSize")} {...register("hoodieSize")}>
 						<option></option>
-						{sizes.map((size) => (
+						{SIZES.map((size) => (
 							<option key={size}>{size}</option>
 						))}
 					</Dropdown>

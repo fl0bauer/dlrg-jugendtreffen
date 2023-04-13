@@ -1,6 +1,9 @@
 import useTranslation from "next-translate/useTranslation";
 import { useFormContext } from "react-hook-form";
 import Input from "@/components/input.component";
+import Dropdown from "@/components/dropdown.component";
+import Checkbox from "@/components/checkbox.component";
+import { SIZES } from "@/config/clothing-sizes.config";
 
 const styles = {
 	form: "flex flex-col gap-8",
@@ -20,9 +23,10 @@ export default function SupervisorFormular() {
 
 	return (
 		<form className={styles.form}>
-			<div className={styles.grid2}>
+			<div className={styles.grid3}>
 				<Input label={getLabel("first-name")} error={getErrors("firstName")} {...register("firstName")} />
 				<Input label={getLabel("last-name")} error={getErrors("lastName")} {...register("lastName")} />
+				<Input type="date" label={getLabel("birthday")} error={getErrors("birthday")} {...register("birthday")} />
 			</div>
 
 			<div className={styles.grid3}>
@@ -34,6 +38,25 @@ export default function SupervisorFormular() {
 			<div className={styles.grid2}>
 				<Input label={getLabel("phone")} error={getErrors("phone")} {...register("phone")} />
 				<Input label={getLabel("email")} error={getErrors("email")} {...register("email")} />
+			</div>
+
+			<div className={styles.grid2}>
+				<Dropdown label={getLabel("shirt-size")} error={getErrors("shirtSize")} {...register("shirtSize")}>
+					<option></option>
+					{SIZES.map((size) => (
+						<option key={size}>{size}</option>
+					))}
+				</Dropdown>
+				<Dropdown label={getLabel("hoodie-size")} error={getErrors("hoodieSize")} {...register("hoodieSize")}>
+					<option></option>
+					{SIZES.map((size) => (
+						<option key={size}>{size}</option>
+					))}
+				</Dropdown>
+			</div>
+
+			<div>
+				<Checkbox label={getLabel("vegetarian-food")} error={getErrors("vegetarianFood")} {...register("vegetarianFood")} />
 			</div>
 		</form>
 	);

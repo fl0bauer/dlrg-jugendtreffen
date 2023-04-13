@@ -38,11 +38,15 @@ type Location {
 }
 
 type Supervisor {
-  firstName String
-  lastName  String
-  address   String
-  phone     String
-  email     String
+  firstName      String
+  lastName       String
+  birthday       String
+  shirtSize      String?
+  hoodieSize     String?
+  vegetarianFood Boolean
+  address        String
+  phone          String
+  email          String
 }
 
 type Participant {

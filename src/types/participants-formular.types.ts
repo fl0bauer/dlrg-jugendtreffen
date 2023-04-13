@@ -1,6 +1,4 @@
-export interface Supervisor {
-	firstName: string;
-	lastName: string;
+export interface Supervisor extends Participant {
 	street: string;
 	zip: string;
 	residence: string;

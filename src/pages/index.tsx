@@ -70,6 +70,10 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 				supervisor: {
 					firstName: supervisorValues.firstName,
 					lastName: supervisorValues.lastName,
+					birthday: supervisorValues.birthday,
+					shirtSize: supervisorValues.shirtSize,
+					hoodieSize: supervisorValues.hoodieSize,
+					vegetarianFood: supervisorValues.vegetarianFood,
 					address: `${supervisorValues.street}, ${supervisorValues.zip} ${supervisorValues.residence}`,
 					phone: supervisorValues.phone,
 					email: supervisorValues.email,
@@ -199,6 +203,10 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 								supervisor={{
 									firstName: supervisorFormular.watch("firstName"),
 									lastName: supervisorFormular.watch("lastName"),
+									birthday: supervisorFormular.watch("birthday"),
+									shirtSize: supervisorFormular.watch("shirtSize"),
+									hoodieSize: supervisorFormular.watch("hoodieSize"),
+									vegetarianFood: supervisorFormular.watch("vegetarianFood"),
 									street: supervisorFormular.watch("street"),
 									zip: supervisorFormular.watch("zip"),
 									residence: supervisorFormular.watch("residence"),

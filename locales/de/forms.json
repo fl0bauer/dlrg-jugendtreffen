@@ -51,6 +51,21 @@
         "required": "Bitte gebe einen Nachnamen an"
       }
     },
+    "birthday": {
+      "label": "Geburtstag",
+      "errors": {
+        "required": "Bitte gebe ein valides Geburtstag an"
+      }
+    },
+    "vegetarian-food": {
+      "label": "Vegetarisches Essen"
+    },
+    "shirt-size": {
+      "label": "T-Shirt Größe"
+    },
+    "hoodie-size": {
+      "label": "Hoodie Größe"
+    },
     "street": {
       "label": "Straße und Hausnummer",
       "errors": {
@@ -109,10 +124,10 @@
       }
     },
     "vegetarian-food": {
-      "label": "Vegetarisches Essen (optional)"
+      "label": "Vegetarisches Essen"
     },
     "shirt-size": {
-      "label": "T-Shirt Größe (optional)"
+      "label": "T-Shirt Größe"
     },
     "hoodie-size": {
       "label": "Hoodie Größe"
