@@ -24,20 +24,20 @@ export default function SupervisorFormular() {
 	return (
 		<form className={styles.form}>
 			<div className={styles.grid3}>
-				<Input label={getLabel("first-name")} error={getErrors("firstName")} {...register("firstName")} />
-				<Input label={getLabel("last-name")} error={getErrors("lastName")} {...register("lastName")} />
-				<Input type="date" label={getLabel("birthday")} error={getErrors("birthday")} {...register("birthday")} />
+				<Input label={getLabel("first-name")} error={getErrors("firstName")} required {...register("firstName")} />
+				<Input label={getLabel("last-name")} error={getErrors("lastName")} required {...register("lastName")} />
+				<Input type="date" label={getLabel("birthday")} error={getErrors("birthday")} required {...register("birthday")} />
 			</div>
 
 			<div className={styles.grid3}>
-				<Input label={getLabel("street")} error={getErrors("street")} {...register("street")} />
-				<Input label={getLabel("zip")} error={getErrors("zip")} {...register("zip")} />
-				<Input label={getLabel("residence")} error={getErrors("residence")} {...register("residence")} />
+				<Input label={getLabel("street")} error={getErrors("street")} required {...register("street")} />
+				<Input label={getLabel("zip")} error={getErrors("zip")} required {...register("zip")} />
+				<Input label={getLabel("residence")} error={getErrors("residence")} required {...register("residence")} />
 			</div>
 
 			<div className={styles.grid2}>
-				<Input label={getLabel("phone")} error={getErrors("phone")} {...register("phone")} />
-				<Input label={getLabel("email")} error={getErrors("email")} {...register("email")} />
+				<Input label={getLabel("phone")} error={getErrors("phone")} required {...register("phone")} />
+				<Input label={getLabel("email")} error={getErrors("email")} required {...register("email")} />
 			</div>
 
 			<div className={styles.grid2}>

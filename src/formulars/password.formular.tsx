@@ -18,7 +18,7 @@ export default function PasswordFormular() {
 
 	return (
 		<form className={styles.form}>
-			<Input type="password" label={getLabel("password")} error={getErrors("password")} {...register("password")} />
+			<Input type="password" label={getLabel("password")} error={getErrors("password")} required {...register("password")} />
 		</form>
 	);
 }

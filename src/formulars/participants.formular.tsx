@@ -110,9 +110,9 @@ export default function ParticipantsFormular({ supervisor }: ParticipantsFormula
 
 			<form className={styles.form}>
 				<div className={styles.grid3}>
-					<Input label={getLabel("first-name")} error={getErrors("firstName")} {...register("firstName")} />
-					<Input label={getLabel("last-name")} error={getErrors("lastName")} {...register("lastName")} />
-					<Input type="date" label={getLabel("birthday")} error={getErrors("birthday")} {...register("birthday")} />
+					<Input label={getLabel("first-name")} error={getErrors("firstName")} required {...register("firstName")} />
+					<Input label={getLabel("last-name")} error={getErrors("lastName")} required {...register("lastName")} />
+					<Input type="date" label={getLabel("birthday")} error={getErrors("birthday")} required {...register("birthday")} />
 				</div>
 
 				<div className={styles.grid2}>

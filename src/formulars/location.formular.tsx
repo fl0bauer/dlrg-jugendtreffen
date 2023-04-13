@@ -43,21 +43,21 @@ export default function LocationFormular({ associationsWithDependencies }: Locat
 
 	return (
 		<form className={styles.form}>
-			<Dropdown label={getLabel("association")} error={getErrors("association")} {...register("association")}>
+			<Dropdown label={getLabel("association")} error={getErrors("association")} required {...register("association")}>
 				<option></option>
 				{associationsWithDependencies.map((association) => (
 					<option key={association.id}>{association.name}</option>
 				))}
 			</Dropdown>
 
-			<Dropdown label={getLabel("district")} error={getErrors("district")} disabled={!association} {...register("district")}>
+			<Dropdown label={getLabel("district")} error={getErrors("district")} disabled={!association} required {...register("district")}>
 				<option></option>
 				{getDistricts(associationsWithDependencies, association).map((district) => (
 					<option key={district.id}>{district.name}</option>
 				))}
 			</Dropdown>
 
-			<Dropdown label={getLabel("local")} error={getErrors("local")} disabled={!association || !district} {...register("local")}>
+			<Dropdown label={getLabel("local")} error={getErrors("local")} disabled={!association || !district} required={getLocals(associationsWithDependencies, association, district).length > 0} {...register("local")}>
 				<option></option>
 				{getLocals(associationsWithDependencies, association, district).map((local) => (
 					<option key={local.id}>{local.name}</option>

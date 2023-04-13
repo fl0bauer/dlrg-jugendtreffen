@@ -21,18 +21,18 @@ export default function SepaFormular() {
 	return (
 		<form className={styles.form}>
 			<div>
-				<Input label={getLabel("account-owner")} error={getErrors("accountOwner")} {...register("accountOwner")} />
+				<Input label={getLabel("account-owner")} error={getErrors("accountOwner")} required {...register("accountOwner")} />
 			</div>
 
 			<div className={styles.grid3}>
-				<Input label={getLabel("street")} error={getErrors("street")} {...register("street")} />
-				<Input label={getLabel("zip")} error={getErrors("zip")} {...register("zip")} />
-				<Input label={getLabel("residence")} error={getErrors("residence")} {...register("residence")} />
+				<Input label={getLabel("street")} error={getErrors("street")} required {...register("street")} />
+				<Input label={getLabel("zip")} error={getErrors("zip")} required {...register("zip")} />
+				<Input label={getLabel("residence")} error={getErrors("residence")} required {...register("residence")} />
 			</div>
 
 			<div className={styles.grid2}>
-				<Input label={getLabel("credit-institution")} error={getErrors("creditInstitution")} {...register("creditInstitution")} />
-				<Input label={getLabel("iban")} error={getErrors("iban")} {...register("iban")} />
+				<Input label={getLabel("credit-institution")} error={getErrors("creditInstitution")} required {...register("creditInstitution")} />
+				<Input label={getLabel("iban")} error={getErrors("iban")} required {...register("iban")} />
 			</div>
 		</form>
 	);
