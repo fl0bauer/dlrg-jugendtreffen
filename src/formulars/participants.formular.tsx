@@ -9,76 +9,78 @@ import { Participant, ParticipantsFormularProps, ParticipantsTableProps } from "
 import Checkbox from "@/components/checkbox.component";
 import Dropdown from "@/components/dropdown.component";
 import { SIZES } from "@/config/clothing-sizes.config";
+import { Form } from "@/components/form.component";
+import NextImage from "next/image";
+import Tooltip from "@/components/tooltip.component";
+import { ReactElement } from "react";
 
 const styles = {
-	container: "flex flex-col gap-4",
-	form: "flex flex-col gap-8 p-8 bg-white shadow rounded-md",
-	grid2: "grid grid-cols-2 gap-4",
-	grid3: "grid grid-cols-3 gap-4",
+	container: "flex flex-col gap-8",
 	link: "font-medium text-blue-600 cursor-pointer hover:underline",
-	linkDisabled: "font-medium text-gray-400 cursor-not-allowed",
+	linkDisabled: "font-medium text-slate-400 cursor-not-allowed",
 	actions: "flex self-end gap-4",
 	table: {
 		container: "overflow-x-auto",
 		columns: {
-			lead: "font-medium text-gray-900 whitespace-nowrap",
+			lead: "font-medium text-slate-900 whitespace-nowrap",
 		},
 	},
 };
 
-function ParticipantsTable({ preSelectedSupervisors, participants, onRemoveParticipant }: ParticipantsTableProps) {
-	const { t } = useTranslation("forms");
+function ParticipantsTable({ preSelectedSupervisor, participants, onRemoveParticipant }: ParticipantsTableProps) {
+	const { t } = useTranslation("participants.formular");
 
 	const Check = <CheckIcon className="h-4 w-4 text-green-500" />;
 	const Cross = <XMarkIcon className="h-4 w-4 text-rose-500" />;
+
+	const Row = ({ participant, role, actions }: { participant: Participant; role: ReactElement; actions: ReactElement }) => (
+		<Table.Row>
+			<Table.Column>{role}</Table.Column>
+			<Table.Column className={styles.table.columns.lead}>
+				{participant.firstName} {participant.lastName}
+			</Table.Column>
+			<Table.Column>{participant.birthday}</Table.Column>
+			<Table.Column>{participant.shirtSize || "-"}</Table.Column>
+			<Table.Column>{participant.hoodieSize || "-"}</Table.Column>
+			<Table.Column>{participant.vegetarianFood ? Check : Cross}</Table.Column>
+			<Table.Column>{actions}</Table.Column>
+		</Table.Row>
+	);
 
 	return (
 		<div className={styles.table.container}>
 			<Table>
 				<Table.Head>
-					<Table.HeadColumn>{t("participants.roles.label")}</Table.HeadColumn>
-					<Table.HeadColumn>{t("participants.name.label")}</Table.HeadColumn>
-					<Table.HeadColumn>{t("participants.birthday.label")}</Table.HeadColumn>
-					<Table.HeadColumn>{t("participants.shirt-size.label")}</Table.HeadColumn>
-					<Table.HeadColumn>{t("participants.hoodie-size.label")}</Table.HeadColumn>
-					<Table.HeadColumn>{t("participants.vegetarian-food.label")}</Table.HeadColumn>
-					<Table.HeadColumn>{t("participants.actions.label")}</Table.HeadColumn>
+					<Table.HeadColumn>{t("table.labels.roles")}</Table.HeadColumn>
+					<Table.HeadColumn>{t("table.labels.name")}</Table.HeadColumn>
+					<Table.HeadColumn>{t("table.labels.birthday")}</Table.HeadColumn>
+					<Table.HeadColumn>{t("table.labels.shirt-size")}</Table.HeadColumn>
+					<Table.HeadColumn>{t("table.labels.hoodie-size")}</Table.HeadColumn>
+					<Table.HeadColumn>{t("table.labels.vegetarian-food")}</Table.HeadColumn>
+					<Table.HeadColumn>{t("table.labels.actions")}</Table.HeadColumn>
 				</Table.Head>
 
 				<Table.Body>
-					<Table.Row>
-						<Table.Column>
-							<Chip color="fuchsia">{t("participants.roles.items.main-supervisor")}</Chip>
-						</Table.Column>
-						<Table.Column className={styles.table.columns.lead}>
-							{preSelectedSupervisors.firstName} {preSelectedSupervisors.lastName}
-						</Table.Column>
-						<Table.Column>{preSelectedSupervisors.birthday}</Table.Column>
-						<Table.Column>{preSelectedSupervisors.shirtSize || "-"}</Table.Column>
-						<Table.Column>{preSelectedSupervisors.hoodieSize || "-"}</Table.Column>
-						<Table.Column>{preSelectedSupervisors.vegetarianFood ? Check : Cross}</Table.Column>
-						<Table.Column>
-							<a className={styles.linkDisabled}>{t("participants.actions.items.delete")}</a>
-						</Table.Column>
-					</Table.Row>
+					<Row participant={preSelectedSupervisor} role={<Chip color="fuchsia">{t("table.roles.main-supervisor")}</Chip>} actions={<a className={styles.linkDisabled}>{t("table.actions.delete")}</a>} />
 
-					{participants.map((participant, index) => (
-						<Table.Row key={participant.id}>
-							<Table.Column>{participant.isSecondarySupervisor ? <Chip color="amber">{t("participants.roles.items.supervisor")}</Chip> : <Chip color="cyan">{t("participants.roles.items.participant")}</Chip>}</Table.Column>
-							<Table.Column className={styles.table.columns.lead}>
-								{participant.firstName} {participant.lastName}
-							</Table.Column>
-							<Table.Column>{participant.birthday}</Table.Column>
-							<Table.Column>{participant.shirtSize || "-"}</Table.Column>
-							<Table.Column>{participant.hoodieSize || "-"}</Table.Column>
-							<Table.Column>{participant.vegetarianFood ? Check : Cross}</Table.Column>
-							<Table.Column>
-								<a className={styles.link} onClick={() => onRemoveParticipant(index)}>
-									{t("participants.actions.items.delete")}
-								</a>
-							</Table.Column>
-						</Table.Row>
-					))}
+					{participants
+						.map((participant, index) => ({
+							isSecondarySupervisor: participant.isSecondarySupervisor,
+							row: (
+								<Row
+									key={index}
+									participant={participant}
+									role={participant.isSecondarySupervisor ? <Chip color="amber">{t("table.roles.supervisor")}</Chip> : <Chip color="cyan">{t("table.roles.participant")}</Chip>}
+									actions={
+										<a className={styles.link} onClick={() => onRemoveParticipant(index)}>
+											{t("table.actions.delete")}
+										</a>
+									}
+								/>
+							),
+						}))
+						.sort((a, b) => (b.isSecondarySupervisor ? 1 : -1))
+						.map((component) => component.row)}
 				</Table.Body>
 			</Table>
 		</div>
@@ -86,11 +88,11 @@ function ParticipantsTable({ preSelectedSupervisors, participants, onRemoveParti
 }
 
 export default function ParticipantsFormular({ supervisor }: ParticipantsFormularProps) {
-	const { t } = useTranslation("forms");
+	const { t } = useTranslation("participants.formular");
 	const { control, register, formState, getValues, setValue } = useFormContext();
 	const { fields, append, remove } = useFieldArray({ control, name: "participants" });
 
-	const getLabel = (name: string) => t(`participants.${name}.label`);
+	const getLabel = (name: string) => t(`inputs.${name}.label`);
 	const getErrors = (name: string) => {
 		const error = formState?.errors?.[name]?.message;
 		return error && t(error as string);
@@ -102,37 +104,56 @@ export default function ParticipantsFormular({ supervisor }: ParticipantsFormula
 		["firstName", "lastName", "birthday", "shirtSize", "hoodieSize"].forEach((field) => setValue(field, ""));
 		["vegetarianFood"].forEach((field) => setValue(field, false));
 	};
-	const participants = (fields as ParticipantsTableProps["participants"]).sort((a, b) => (b.isSecondarySupervisor ? 1 : -1));
 
 	return (
 		<div className={styles.container}>
-			<ParticipantsTable preSelectedSupervisors={supervisor} participants={participants} onRemoveParticipant={remove} />
+			<ParticipantsTable preSelectedSupervisor={supervisor} participants={fields as ParticipantsTableProps["participants"]} onRemoveParticipant={remove} />
 
-			<form className={styles.form}>
-				<div className={styles.grid3}>
-					<Input label={getLabel("first-name")} error={getErrors("firstName")} required {...register("firstName")} />
-					<Input label={getLabel("last-name")} error={getErrors("lastName")} required {...register("lastName")} />
-					<Input type="date" label={getLabel("birthday")} error={getErrors("birthday")} required {...register("birthday")} />
-				</div>
+			<Form>
+				<Form.Group columns={3}>
+					<Input id="participant-first-name" label={getLabel("first-name")} error={getErrors("firstName")} required {...register("firstName")} />
+					<Input id="participant-last-name" label={getLabel("last-name")} error={getErrors("lastName")} required {...register("lastName")} />
+					<Input id="participant-birthday" type="date" label={getLabel("birthday")} error={getErrors("birthday")} required {...register("birthday")} />
+				</Form.Group>
 
-				<div className={styles.grid2}>
-					<Dropdown label={getLabel("shirt-size")} error={getErrors("shirtSize")} {...register("shirtSize")}>
+				<Form.Group columns={2}>
+					<Dropdown
+						id="participant-shirt-size"
+						tooltip={
+							<Tooltip className="w-32">
+								<NextImage src="/shirt.jpg" alt="DLRG Shirt" width={708} height={798} />
+							</Tooltip>
+						}
+						label={getLabel("shirt-size")}
+						error={getErrors("shirtSize")}
+						{...register("shirtSize")}
+					>
 						<option></option>
 						{SIZES.map((size) => (
 							<option key={size}>{size}</option>
 						))}
 					</Dropdown>
-					<Dropdown label={getLabel("hoodie-size")} error={getErrors("hoodieSize")} {...register("hoodieSize")}>
+					<Dropdown
+						id="participant-hoodie-size"
+						tooltip={
+							<Tooltip className="w-32">
+								<NextImage src="/hoodie.jpg" alt="DLRG Hoodie" width={740} height={1011} />
+							</Tooltip>
+						}
+						label={getLabel("hoodie-size")}
+						error={getErrors("hoodieSize")}
+						{...register("hoodieSize")}
+					>
 						<option></option>
 						{SIZES.map((size) => (
 							<option key={size}>{size}</option>
 						))}
 					</Dropdown>
-				</div>
+				</Form.Group>
 
-				<div>
-					<Checkbox label={getLabel("vegetarian-food")} error={getErrors("vegetarianFood")} {...register("vegetarianFood")} />
-				</div>
+				<Form.Group columns={1}>
+					<Checkbox id="participant-vegetarian-food" label={getLabel("vegetarian-food")} error={getErrors("vegetarianFood")} {...register("vegetarianFood")} />
+				</Form.Group>
 
 				<div className={styles.actions}>
 					<Button
@@ -145,7 +166,7 @@ export default function ParticipantsFormular({ supervisor }: ParticipantsFormula
 						}}
 					>
 						<UserPlusIcon className="h-4 w-4" />
-						{t("participants.actions.items.add-supervisor")}
+						{t("actions.add-supervisor")}
 					</Button>
 
 					<Button
@@ -158,10 +179,10 @@ export default function ParticipantsFormular({ supervisor }: ParticipantsFormula
 						}}
 					>
 						<UserPlusIcon className="h-4 w-4" />
-						{t("participants.actions.items.add-participant")}
+						{t("actions.add-participant")}
 					</Button>
 				</div>
-			</form>
+			</Form>
 		</div>
 	);
 }

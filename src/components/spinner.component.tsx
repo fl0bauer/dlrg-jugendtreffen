@@ -2,7 +2,7 @@ import { SpinnerProps } from "@/types/spinner.types";
 import classNames from "classnames";
 
 const styles = {
-	svg: "w-4 h-4 mr-2 text-gray-200 animate-spin",
+	svg: "w-4 h-4 text-slate-200 animate-spin",
 	colors: {
 		blue: "fill-blue-600",
 	},

@@ -4,10 +4,10 @@ import { cs } from "@/lib/styles.lib";
 import { forwardRef, LegacyRef } from "react";
 
 const styles = {
-	base: "inline-flex items-center justify-center gap-2 py-2 px-3 text-sm font-semibold select-none rounded-md transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 disabled:text-gray-400 disabled:bg-gray-100 disabled:cursor-not-allowed",
+	base: "inline-flex items-center justify-center gap-2 py-2 px-3 text-sm font-semibold select-none rounded-md transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 disabled:text-slate-400 disabled:bg-slate-200 disabled:cursor-not-allowed",
 	variant: {
-		primary: "text-white bg-indigo-600 shadow-md hover:bg-indigo-500 focus-visible:outline-indigo-500",
-		secondary: "text-indigo-500 bg-indigo-100 hover:bg-indigo-200 focus-visible:outline-indigo-500",
+		primary: "text-blue-50 bg-blue-600 shadow-md hover:bg-blue-500 focus-visible:outline-blue-500",
+		secondary: "text-blue-600 bg-blue-100 hover:bg-blue-200 focus-visible:outline-blue-500",
 	},
 };
 

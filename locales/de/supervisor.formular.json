@@ -1,0 +1,63 @@
+{
+  "label": "Hauptbetreuer*in",
+  "inputs": {
+    "first-name": {
+      "label": "Vorname",
+      "errors": {
+        "required": "Bitte gebe einen Vornamen an"
+      }
+    },
+    "last-name": {
+      "label": "Nachname",
+      "errors": {
+        "required": "Bitte gebe einen Nachnamen an"
+      }
+    },
+    "birthday": {
+      "label": "Geburtsdatum",
+      "errors": {
+        "required": "Bitte gebe ein valides Geburtsdatum an"
+      }
+    },
+    "vegetarian-food": {
+      "label": "Vegetarisches Essen"
+    },
+    "shirt-size": {
+      "label": "T-Shirt Größe"
+    },
+    "hoodie-size": {
+      "label": "Hoodie Größe"
+    },
+    "street": {
+      "label": "Straße und Hausnummer",
+      "errors": {
+        "required": "Bitte gebe einen Straße und Hausnummer an"
+      }
+    },
+    "zip": {
+      "label": "Postleizahl",
+      "errors": {
+        "length": "Postleizahl muss genau 5 Zeichen lang sein"
+      }
+    },
+    "residence": {
+      "label": "Ort",
+      "errors": {
+        "required": "Bitte gebe einen Ort an"
+      }
+    },
+    "phone": {
+      "label": "Handynummer",
+      "errors": {
+        "required": "Bitte gebe eine Handynummer an"
+      }
+    },
+    "email": {
+      "label": "E-Mail",
+      "errors": {
+        "required": "Bitte gebe eine E-Mail an",
+        "email": "Bitte gebe eine valide E-Mail an"
+      }
+    }
+  }
+}

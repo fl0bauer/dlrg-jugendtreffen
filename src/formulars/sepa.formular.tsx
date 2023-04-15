@@ -1,39 +1,34 @@
 import useTranslation from "next-translate/useTranslation";
 import { useFormContext } from "react-hook-form";
 import Input from "@/components/input.component";
-
-const styles = {
-	form: "flex flex-col gap-8",
-	grid2: "grid grid-cols-2 gap-4",
-	grid3: "grid grid-cols-3 gap-4",
-};
+import { Form } from "@/components/form.component";
 
 export default function SepaFormular() {
-	const { t } = useTranslation("forms");
+	const { t } = useTranslation("sepa.formular");
 	const { register, formState } = useFormContext();
 
-	const getLabel = (name: string) => t(`sepa.${name}.label`);
+	const getLabel = (name: string) => t(`inputs.${name}.label`);
 	const getErrors = (name: string) => {
 		const error = formState?.errors?.[name]?.message;
 		return error && t(error as string);
 	};
 
 	return (
-		<form className={styles.form}>
-			<div>
-				<Input label={getLabel("account-owner")} error={getErrors("accountOwner")} required {...register("accountOwner")} />
-			</div>
+		<Form>
+			<Form.Group columns={1}>
+				<Input id="sepa-account-owner" label={getLabel("account-owner")} error={getErrors("accountOwner")} required {...register("accountOwner")} />
+			</Form.Group>
 
-			<div className={styles.grid3}>
-				<Input label={getLabel("street")} error={getErrors("street")} required {...register("street")} />
-				<Input label={getLabel("zip")} error={getErrors("zip")} required {...register("zip")} />
-				<Input label={getLabel("residence")} error={getErrors("residence")} required {...register("residence")} />
-			</div>
+			<Form.Group columns={3}>
+				<Input id="sepa-street" label={getLabel("street")} error={getErrors("street")} required {...register("street")} />
+				<Input id="sepa-zip" label={getLabel("zip")} error={getErrors("zip")} required {...register("zip")} />
+				<Input id="sepa-residence" label={getLabel("residence")} error={getErrors("residence")} required {...register("residence")} />
+			</Form.Group>
 
-			<div className={styles.grid2}>
-				<Input label={getLabel("credit-institution")} error={getErrors("creditInstitution")} required {...register("creditInstitution")} />
-				<Input label={getLabel("iban")} error={getErrors("iban")} required {...register("iban")} />
-			</div>
-		</form>
+			<Form.Group columns={2}>
+				<Input id="sepa-credit-institution" label={getLabel("credit-institution")} error={getErrors("creditInstitution")} required {...register("creditInstitution")} />
+				<Input id="sepa-iban" label={getLabel("iban")} error={getErrors("iban")} required {...register("iban")} />
+			</Form.Group>
+		</Form>
 	);
 }

@@ -1,0 +1,43 @@
+{
+  "label": "SEPA",
+  "inputs": {
+    "account-owner": {
+      "label": "Kontoinhaber",
+      "errors": {
+        "required": "Bitte gebe einen Kontoinhaber an"
+      }
+    },
+    "street": {
+      "label": "Straße und Hausnummer",
+      "errors": {
+        "required": "Bitte gebe einen Straße und Hausnummer an"
+      }
+    },
+    "zip": {
+      "label": "Postleizahl",
+      "errors": {
+        "length": "Postleizahl muss genau 5 Zeichen lang sein"
+      }
+    },
+    "residence": {
+      "label": "Ort",
+      "errors": {
+        "required": "Bitte gebe einen Ort an"
+      }
+    },
+    "credit-institution": {
+      "label": "Kreditinstitut (Name und BIC)",
+      "errors": {
+        "required": "Bitte gebe das Kreditinstitut und die BIC an"
+      }
+    },
+    "iban": {
+      "label": "IBAN",
+      "errors": {
+        "required": "Bitte gebe eine IBAN an",
+        "start-with-de": "Die IBAN muss mit 'DE' anfangen",
+        "length": "Die IBAN muss 22 Zeichen lang sein"
+      }
+    }
+  }
+}

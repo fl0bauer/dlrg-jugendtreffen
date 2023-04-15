@@ -4,16 +4,13 @@ import { useFormContext } from "react-hook-form";
 import { useEffect } from "react";
 import Dropdown from "@/components/dropdown.component";
 import { getDistricts, getLocals } from "@/lib/location.lib";
-
-const styles = {
-	form: "flex flex-col gap-8",
-};
+import { Form } from "@/components/form.component";
 
 export default function LocationFormular({ associationsWithDependencies }: LocationFormularProps) {
-	const { t } = useTranslation("forms");
+	const { t } = useTranslation("location.formular");
 	const { watch, setValue, clearErrors, register, formState } = useFormContext();
 
-	const getLabel = (name: string) => t(`location.${name}.label`);
+	const getLabel = (name: string) => t(`inputs.${name}.label`);
 	const getErrors = (name: string) => {
 		const error = formState?.errors?.[name]?.message;
 		return error && t(error as string);
@@ -42,27 +39,27 @@ export default function LocationFormular({ associationsWithDependencies }: Locat
 	}, [district, setValue, clearErrors]);
 
 	return (
-		<form className={styles.form}>
-			<Dropdown label={getLabel("association")} error={getErrors("association")} required {...register("association")}>
+		<Form>
+			<Dropdown id="location-association" label={getLabel("association")} error={getErrors("association")} required {...register("association")}>
 				<option></option>
 				{associationsWithDependencies.map((association) => (
 					<option key={association.id}>{association.name}</option>
 				))}
 			</Dropdown>
 
-			<Dropdown label={getLabel("district")} error={getErrors("district")} disabled={!association} required {...register("district")}>
+			<Dropdown id="location-district" label={getLabel("district")} error={getErrors("district")} disabled={!association} required {...register("district")}>
 				<option></option>
 				{getDistricts(associationsWithDependencies, association).map((district) => (
 					<option key={district.id}>{district.name}</option>
 				))}
 			</Dropdown>
 
-			<Dropdown label={getLabel("local")} error={getErrors("local")} disabled={!association || !district} required={getLocals(associationsWithDependencies, association, district).length > 0} {...register("local")}>
+			<Dropdown id="location-local" label={getLabel("local")} error={getErrors("local")} disabled={!association || !district || getLocals(associationsWithDependencies, association, district).length === 0} required={getLocals(associationsWithDependencies, association, district).length > 0} {...register("local")}>
 				<option></option>
 				{getLocals(associationsWithDependencies, association, district).map((local) => (
 					<option key={local.id}>{local.name}</option>
 				))}
 			</Dropdown>
-		</form>
+		</Form>
 	);
 }

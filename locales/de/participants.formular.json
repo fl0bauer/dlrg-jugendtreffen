@@ -1,0 +1,55 @@
+{
+  "label": "Teilnehmer*innen",
+  "table": {
+    "roles": {
+      "main-supervisor": "Hauptbetreuer*in",
+      "supervisor": "Betreuer*in",
+      "participant": "Teilnehmer*in"
+    },
+    "labels": {
+      "roles": "",
+      "name": "Name",
+      "birthday": "Geburtsdatum",
+      "shirt-size": "T-Shirt Größe",
+      "hoodie-size": "Hoodie Größe",
+      "vegetarian-food": "Vegetarisches Essen",
+      "actions": ""
+    },
+    "actions": {
+      "delete": "Löschen"
+    }
+  },
+  "inputs": {
+    "first-name": {
+      "label": "Vorname",
+      "errors": {
+        "required": "Bitte gebe einen Vornamen an"
+      }
+    },
+    "last-name": {
+      "label": "Nachname",
+      "errors": {
+        "required": "Bitte gebe einen Nachnamen an"
+      }
+    },
+    "birthday": {
+      "label": "Geburtsdatum",
+      "errors": {
+        "required": "Bitte gebe ein valides Geburtsdatum an"
+      }
+    },
+    "vegetarian-food": {
+      "label": "Vegetarisches Essen"
+    },
+    "shirt-size": {
+      "label": "T-Shirt Größe"
+    },
+    "hoodie-size": {
+      "label": "Hoodie Größe"
+    }
+  },
+  "actions": {
+    "add-supervisor": "Als Betreuer*in hinzufügen",
+    "add-participant": "Als Teilnehmer*in hinzufügen"
+  }
+}
