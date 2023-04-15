@@ -8,9 +8,12 @@
       "meta"
     ],
     "/": [
-      "forms",
-      "deadline",
-      "registration"
+      "general.formular",
+      "location.formular",
+      "participants.formular",
+      "password.formular",
+      "sepa.formular",
+      "supervisor.formular"
     ]
   }
 }

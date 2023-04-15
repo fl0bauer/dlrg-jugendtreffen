@@ -16,7 +16,7 @@ export interface Participant {
 }
 
 export interface ParticipantsTableProps {
-	preSelectedSupervisors: Supervisor;
+	preSelectedSupervisor: Supervisor;
 	participants: (Participant & { id: string; isSecondarySupervisor: boolean })[];
 	onRemoveParticipant: (index: number) => void;
 }

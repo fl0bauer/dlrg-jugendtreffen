@@ -1,14 +1,28 @@
 import classNames from "classnames";
-import { StepperProps } from "@/types/stepper.types";
+import { StepperIndicatorProps, StepperIndicatorStepProps, StepperProps, StepProps } from "@/types/stepper.types";
 import { Children, cloneElement, useState } from "react";
 import { cs } from "@/lib/styles.lib";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
 const styles = {
-	container: "flex flex-col gap-12",
+	stepperContainer: "flex flex-col gap-8",
+	stepContainer: "flex flex-col gap-8",
 	buttons: "flex gap-4 justify-end",
+	indicator: {
+		list: "flex items-center gap-3 bg-white border border-slate-200 rounded-md p-4 overflow-y-auto select-none",
+		prefix: {
+			active: "hidden items-center justify-center w-5 h-5 text-xs border border-blue-600 bg-blue-50 rounded-full shrink-0 sm:flex",
+			inactive: "hidden items-center justify-center w-5 h-5 text-xs border border-slate-500 rounded-full shrink-0 sm:flex",
+		},
+		icon: "w-4 h-4 stroke-2",
+		item: {
+			active: "flex items-center gap-2 text-blue-600 font-medium",
+			inactive: "flex items-center gap-2 text-slate-500",
+		},
+	},
 };
 
-export default function Stepper({ children, previousStepButton, nextStepButton, submitButton, className, ...props }: StepperProps) {
+export function Stepper({ children, previousStepButton, nextStepButton, submitButton, className, ...props }: StepperProps) {
 	const [step, setStep] = useState(0);
 
 	const isCurrentStep = (index: number) => step === index;
@@ -19,7 +33,15 @@ export default function Stepper({ children, previousStepButton, nextStepButton, 
 	const nextStep = () => setStep(step + 1);
 
 	return (
-		<>
+		<div className={styles.stepperContainer}>
+			<Stepper.Indicator>
+				{Children.map(children, (child, index) => (
+					<Stepper.IndicatorStep prefix={`${index + 1}`} active={isCurrentStep(index)} showArrows={hasNextStep(index)}>
+						{child.props?.label}
+					</Stepper.IndicatorStep>
+				))}
+			</Stepper.Indicator>
+
 			{Children.map(children, (child, index) => {
 				const PreviousStepButton = cloneElement(previousStepButton, {
 					onClick: () => {
@@ -44,7 +66,7 @@ export default function Stepper({ children, previousStepButton, nextStepButton, 
 					disabled: child.props?.disableNextStep || false,
 				});
 
-				const classes = classNames(cs(styles.container, isCurrentStep(index)), cs("hidden", !isCurrentStep(index)), className);
+				const classes = classNames(cs(styles.stepContainer, isCurrentStep(index)), cs("hidden", !isCurrentStep(index)), className);
 
 				return (
 					<div className={classes} {...props}>
@@ -57,6 +79,44 @@ export default function Stepper({ children, previousStepButton, nextStepButton, 
 					</div>
 				);
 			})}
-		</>
+		</div>
 	);
 }
+
+Stepper.Step = function Step({ children, disablePreviousStep, disableNextStep, onPreviousStep, onNextStep, ...props }: StepProps) {
+	return <div {...props}>{children}</div>;
+};
+
+Stepper.Indicator = function StepperIndicator({ children, className, ...props }: StepperIndicatorProps) {
+	const classes = classNames(styles.indicator.list, className);
+
+	return (
+		<ol className={classes} {...props}>
+			{children}
+		</ol>
+	);
+};
+
+Stepper.IndicatorStep = function StepperIndicatorStep({ children, prefix = "", active = false, showArrows = false, className, ...props }: StepperIndicatorStepProps) {
+	if (active) {
+		const classes = classNames(styles.indicator.item.active, className);
+
+		return (
+			<li className={classes} {...props}>
+				<span className={styles.indicator.prefix.active}>{prefix}</span>
+				{children}
+				{showArrows && <ArrowRightIcon className={styles.indicator.icon} />}
+			</li>
+		);
+	}
+
+	const classes = classNames(styles.indicator.item.inactive, className);
+
+	return (
+		<li className={classes} {...props}>
+			<span className={styles.indicator.prefix.inactive}>{prefix}</span>
+			{children}
+			{showArrows && <ArrowRightIcon className={styles.indicator.icon} />}
+		</li>
+	);
+};

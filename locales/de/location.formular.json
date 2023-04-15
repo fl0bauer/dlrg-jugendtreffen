@@ -1,0 +1,23 @@
+{
+  "label": "Standort",
+  "inputs": {
+    "association": {
+      "label": "Landesverband",
+      "errors": {
+        "required": "Bitte wähle einen Landesverband"
+      }
+    },
+    "district": {
+      "label": "Bezirk",
+      "errors": {
+        "required": "Bitte wähle einen Bezirk"
+      }
+    },
+    "local": {
+      "label": "Ortsgruppe",
+      "errors": {
+        "required": "Bitte wähle eine Ortsgruppe"
+      }
+    }
+  }
+}

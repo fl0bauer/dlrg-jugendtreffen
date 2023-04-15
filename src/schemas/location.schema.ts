@@ -5,8 +5,8 @@ import { getLocals } from "@/lib/location.lib";
 export const locationSchema = (associationsWithDependencies: AssociationWithDependencies[]) =>
 	z
 		.object({
-			association: z.string().nonempty("location.association.errors.required"),
-			district: z.string().nonempty("location.district.errors.required"),
+			association: z.string().nonempty("inputs.association.errors.required"),
+			district: z.string().nonempty("inputs.district.errors.required"),
 			local: z.string().optional(),
 		})
 		.refine(
@@ -20,6 +20,6 @@ export const locationSchema = (associationsWithDependencies: AssociationWithDepe
 			},
 			{
 				path: ["local"],
-				message: "location.local.errors.required",
+				message: "inputs.local.errors.required",
 			}
 		);

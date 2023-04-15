@@ -2,10 +2,11 @@ import { TableBodyProps, TableColumnProps, TableHeadColumnProps, TableHeadProps,
 import classNames from "classnames";
 
 const styles = {
-	table: "overflow-hidden w-full text-sm text-left text-gray-500 rounded-md select-none shadow",
-	thead: "text-xs text-gray-700 bg-gray-50",
+	container: "border border-slate-200 rounded-md overflow-hidden",
+	table: "w-full text-sm text-left text-slate-600 select-none",
+	thead: "text-xs text-slate-700 bg-slate-50",
 	tbody: "bg-white",
-	row: "bg-white border-t",
+	row: "odd:bg-white even:bg-slate-50 border-t",
 	column: {
 		thead: "px-6 py-3",
 		tbody: "px-6 py-3",
@@ -15,9 +16,11 @@ const styles = {
 export function Table({ children, className, ...props }: TableProps) {
 	const classes = classNames(styles.table, className);
 	return (
-		<table className={classes} {...props}>
-			{children}
-		</table>
+		<div className={styles.container}>
+			<table className={classes} {...props}>
+				{children}
+			</table>
+		</div>
 	);
 }
 

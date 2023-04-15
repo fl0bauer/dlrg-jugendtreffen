@@ -3,11 +3,8 @@ import { InferGetServerSidePropsType } from "next";
 import { fetchAssociations } from "@/prisma/location";
 import Frame from "@/components/frame.component";
 import useTranslation from "next-translate/useTranslation";
-import Stepper from "@/components/stepper.component";
-import { ArrowLeftCircleIcon, ArrowPathIcon, ArrowRightCircleIcon, CheckCircleIcon } from "@heroicons/react/24/outline";
+import { ArrowLeftCircleIcon, ArrowRightCircleIcon, CheckCircleIcon, CheckIcon, ClockIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Button from "@/components/button.component";
-import Step from "@/components/step.component";
-import Heading from "@/components/heading.component";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { locationSchema } from "@/schemas/location.schema";
@@ -24,6 +21,9 @@ import { Participant } from "@/types/participants-formular.types";
 import { Prisma } from ".prisma/client";
 import { useState } from "react";
 import Spinner from "@/components/spinner.component";
+import { Stepper } from "@/components/stepper.component";
+import { Model } from "@/components/model.component";
+import Intro from "@/components/intro.component";
 import RegistrationCreateInput = Prisma.RegistrationCreateInput;
 
 export const getServerSideProps = async () => {
@@ -36,6 +36,7 @@ export const getServerSideProps = async () => {
 
 const styles = {
 	step: "flex flex-col gap-8",
+	modelContainer: "flex flex-col flex-grow items-center justify-center select-none",
 };
 
 export default function Home({ associations }: InferGetServerSidePropsType<typeof getServerSideProps>) {
@@ -111,8 +112,16 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 			<>
 				<Head />
 
-				<Frame className="flex justify-center items-center">
-					<Heading heading={t("deadline:heading")} description={t("deadline:description")} />
+				<Frame>
+					<div className={styles.modelContainer}>
+						<Model>
+							<Model.Icon className="bg-pink-200">
+								<ClockIcon className="h-6 w-6 text-pink-700 stroke-2" />
+							</Model.Icon>
+							<Model.Title>{t("general.formular:deadline.title")}</Model.Title>
+							<Model.Text>{t("general.formular:deadline.text")}</Model.Text>
+						</Model>
+					</div>
 				</Frame>
 			</>
 		);
@@ -123,8 +132,16 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 			<>
 				<Head />
 
-				<Frame className="flex justify-center items-center">
-					<Heading heading={t("registration:success.heading")} description={t("registration:success.description")} />
+				<Frame>
+					<div className={styles.modelContainer}>
+						<Model>
+							<Model.Icon className="bg-green-200">
+								<CheckIcon className="h-6 w-6 text-green-700 stroke-2" />
+							</Model.Icon>
+							<Model.Title>{t("general.formular:success.title")}</Model.Title>
+							<Model.Text>{t("general.formular:success.text")}</Model.Text>
+						</Model>
+					</div>
 				</Frame>
 			</>
 		);
@@ -135,12 +152,16 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 			<>
 				<Head />
 
-				<Frame className="flex flex-col gap-4 justify-center items-center">
-					<Heading heading={t("registration:error.heading")} description={t("registration:error.description")} />
-					<Button onClick={() => (window.location.href = "/")}>
-						<ArrowPathIcon className="h-4 w-4" />
-						{t("registration:error.retry")}
-					</Button>
+				<Frame>
+					<div className={styles.modelContainer}>
+						<Model>
+							<Model.Icon className="bg-rose-200">
+								<XMarkIcon className="h-6 w-6 text-rose-700 stroke-2" />
+							</Model.Icon>
+							<Model.Title>{t("general.formular:error.title")}</Model.Title>
+							<Model.Text>{t("general.formular:error.text")}</Model.Text>
+						</Model>
+					</div>
 				</Frame>
 			</>
 		);
@@ -150,54 +171,48 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 		<>
 			<Head />
 
+			<Intro />
+
 			<Frame>
 				<Stepper
 					previousStepButton={
 						<Button variant="secondary">
 							<ArrowLeftCircleIcon className="h-4 w-4" />
-							{t("forms:general.previous-step")}
+							{t("general.formular:stepper.previous-step")}
 						</Button>
 					}
 					nextStepButton={
 						<Button>
-							{t("forms:general.next-step")}
+							{t("general.formular:stepper.next-step")}
 							<ArrowRightCircleIcon className="h-4 w-4" />
 						</Button>
 					}
 					submitButton={
 						<Button>
-							{t("forms:general.submit")}
+							{t("general.formular:stepper.submit")}
 							{submitStatus === "loading" ? <Spinner color="blue" screenReaderText="Loading" /> : <CheckCircleIcon className="h-4 w-4" />}
 						</Button>
 					}
 				>
-					<Step className={styles.step} disableNextStep={!passwordFormular.formState.isValid}>
-						<Heading heading={t("forms:password.heading")} description={t("forms:password.description")} />
-
+					<Stepper.Step label={t("password.formular:label")} className={styles.step} disableNextStep={!passwordFormular.formState.isValid}>
 						<FormProvider {...passwordFormular}>
 							<PasswordFormular />
 						</FormProvider>
-					</Step>
+					</Stepper.Step>
 
-					<Step className={styles.step} disableNextStep={!locationFormular.formState.isValid}>
-						<Heading heading={t("forms:location.heading")} description={t("forms:location.description")} />
-
+					<Stepper.Step label={t("location.formular:label")} className={styles.step} disableNextStep={!locationFormular.formState.isValid}>
 						<FormProvider {...locationFormular}>
 							<LocationFormular associationsWithDependencies={associations} />
 						</FormProvider>
-					</Step>
+					</Stepper.Step>
 
-					<Step className={styles.step} disableNextStep={!supervisorFormular.formState.isValid}>
-						<Heading heading={t("forms:supervisor.heading")} description={t("forms:supervisor.description")} />
-
+					<Stepper.Step label={t("supervisor.formular:label")} className={styles.step} disableNextStep={!supervisorFormular.formState.isValid}>
 						<FormProvider {...supervisorFormular}>
 							<SupervisorFormular />
 						</FormProvider>
-					</Step>
+					</Stepper.Step>
 
-					<Step className={styles.step}>
-						<Heading heading={t("forms:participants.heading")} description={t("forms:participants.description")} />
-
+					<Stepper.Step label={t("participants.formular:label")} className={styles.step}>
 						<FormProvider {...participantsFormular}>
 							<ParticipantsFormular
 								supervisor={{
@@ -215,15 +230,13 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 								}}
 							/>
 						</FormProvider>
-					</Step>
+					</Stepper.Step>
 
-					<Step className={styles.step} disableNextStep={!sepaFormular.formState.isValid || submitStatus === "loading"} onNextStep={onRegister}>
-						<Heading heading={t("forms:sepa.heading")} description={t("forms:sepa.description")} />
-
+					<Stepper.Step label={t("sepa.formular:label")} className={styles.step} disableNextStep={!sepaFormular.formState.isValid || submitStatus === "loading"} onNextStep={onRegister}>
 						<FormProvider {...sepaFormular}>
 							<SepaFormular />
 						</FormProvider>
-					</Step>
+					</Stepper.Step>
 				</Stepper>
 			</Frame>
 		</>
