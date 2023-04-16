@@ -1,3 +1,15 @@
+# [1.12.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.11.2...v1.12.0) (2023-04-16)
+
+
+### Bug Fixes
+
+* **components:** selection on `intro` image ([ba02484](https://github.com/fl0bauer/drlg-event-registration-form/commit/ba024845327d67bbf43da03093d9979b1e0e6d92))
+
+
+### Features
+
+* **admin:** introduce admin area with export as xlsx ([21b24cd](https://github.com/fl0bauer/drlg-event-registration-form/commit/21b24cdd5b7bedaadddd860fc6d18cbe052dcfd7)), closes [#28](https://github.com/fl0bauer/drlg-event-registration-form/issues/28)
+
 ## [1.11.2](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.11.1...v1.11.2) (2023-04-16)
 
 
