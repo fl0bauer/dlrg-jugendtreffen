@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.12.0...v1.12.1) (2023-04-16)
+
+
+### Bug Fixes
+
+* **components:** `intro` fade animation ([6746783](https://github.com/fl0bauer/drlg-event-registration-form/commit/674678361508b1c2ca48f7df2de5d2658e72af66))
+
 # [1.12.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.11.2...v1.12.0) (2023-04-16)
 
 
