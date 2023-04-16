@@ -58,7 +58,7 @@ export default function Admin({ registrations }: InferGetServerSidePropsType<typ
 					<Stepper.Step label={t("export.formular:label")} className={styles.step}>
 						<FormProvider {...exportFormular}>
 							{registrations.length === 0 && (
-								<Model>
+								<Model className="select-none">
 									<Model.Icon className="bg-pink-200">
 										<FolderIcon className="h-6 w-6 text-pink-700 stroke-2" />
 									</Model.Icon>
