@@ -8,11 +8,12 @@ import Chip from "@/components/chip.component";
 import { Participant, ParticipantsFormularProps, ParticipantsTableProps } from "@/types/participants-formular.types";
 import Checkbox from "@/components/checkbox.component";
 import Dropdown from "@/components/dropdown.component";
-import { SIZES } from "@/config/clothing-sizes.config";
+import { SIZES } from "@/config/clothing.config";
 import { Form } from "@/components/form.component";
 import NextImage from "next/image";
 import Tooltip from "@/components/tooltip.component";
 import { ReactElement } from "react";
+import { getAge } from "@/lib/age.lib";
 
 const styles = {
 	container: "flex flex-col gap-8",
@@ -89,7 +90,7 @@ function ParticipantsTable({ preSelectedSupervisor, participants, onRemovePartic
 
 export default function ParticipantsFormular({ supervisor }: ParticipantsFormularProps) {
 	const { t } = useTranslation("participants.formular");
-	const { control, register, formState, getValues, setValue } = useFormContext();
+	const { control, register, formState, getValues, setValue, watch } = useFormContext();
 	const { fields, append, remove } = useFieldArray({ control, name: "participants" });
 
 	const getLabel = (name: string) => t(`inputs.${name}.label`);
@@ -98,6 +99,10 @@ export default function ParticipantsFormular({ supervisor }: ParticipantsFormula
 		return error && t(error as string);
 	};
 
+	const isAge = (requiredAge: number) => {
+		const age = getAge(watch("birthday"), process.env.NEXT_PUBLIC_BIRTHDAY_ORIENTATION_DATE);
+		return age >= requiredAge;
+	};
 	const getParticipant = () => ({ firstName: getValues("firstName"), lastName: getValues("lastName"), birthday: getValues("birthday"), shirtSize: getValues("shirtSize"), hoodieSize: getValues("hoodieSize"), vegetarianFood: getValues("vegetarianFood") } as Participant);
 	const appendParticipant = (isSecondarySupervisor: boolean) => append({ ...getParticipant(), isSecondarySupervisor });
 	const clearValues = () => {
@@ -158,7 +163,7 @@ export default function ParticipantsFormular({ supervisor }: ParticipantsFormula
 				<div className={styles.actions}>
 					<Button
 						variant="secondary"
-						disabled={!formState.isValid}
+						disabled={!formState.isValid || !isAge(18)}
 						onClick={(event) => {
 							event.preventDefault();
 							appendParticipant(true);
@@ -171,7 +176,7 @@ export default function ParticipantsFormular({ supervisor }: ParticipantsFormula
 
 					<Button
 						variant="secondary"
-						disabled={!formState.isValid}
+						disabled={!formState.isValid || !isAge(13)}
 						onClick={(event) => {
 							event.preventDefault();
 							appendParticipant(false);

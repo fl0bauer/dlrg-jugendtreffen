@@ -1,5 +1,9 @@
 {
   "label": "SEPA",
+  "estimated-price": {
+    "title": "Geschätzter Preis: {{estimatedPrice}}€",
+    "text": "basierend auf Teilnehmer*innen und T-Shirt / Hoodie Bestellungen"
+  },
   "inputs": {
     "account-owner": {
       "label": "Kontoinhaber",
