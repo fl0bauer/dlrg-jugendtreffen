@@ -9,11 +9,22 @@ const styles = {
 	},
 };
 
-export function Form({ children, className, ...props }: FormProps) {
+export function Form({ children, className, onSubmit, ...props }: FormProps) {
 	const classes = classNames(styles.form, className);
 
 	return (
-		<form className={classes} {...props}>
+		<form
+			className={classes}
+			onSubmit={
+				onSubmit
+					? onSubmit
+					: (event) => {
+							event.stopPropagation();
+							event.preventDefault();
+					  }
+			}
+			{...props}
+		>
 			{children}
 		</form>
 	);
