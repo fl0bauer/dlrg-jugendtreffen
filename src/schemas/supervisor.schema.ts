@@ -11,5 +11,5 @@ export const supervisorSchema = z.object({
 	zip: z.string().length(5, "inputs.zip.errors.length"),
 	residence: z.string().nonempty("inputs.residence.errors.required"),
 	phone: z.string().nonempty("inputs.phone.errors.required"),
-	email: z.string().nonempty("inputs.email.errors.required").email("inputs.email.errors.email"),
+	email: z.string().nonempty("inputs.email.errors.required").includes("@", { message: "inputs.email.errors.email" }).includes(".", { message: "inputs.email.errors.email" }),
 });
