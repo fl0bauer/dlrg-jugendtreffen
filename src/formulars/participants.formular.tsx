@@ -8,7 +8,7 @@ import Chip from "@/components/chip.component";
 import { Participant, ParticipantsFormularProps, ParticipantsTableProps } from "@/types/participants-formular.types";
 import Checkbox from "@/components/checkbox.component";
 import Dropdown from "@/components/dropdown.component";
-import { SIZES } from "@/config/clothing-sizes.config";
+import { SIZES } from "@/config/clothing.config";
 import { Form } from "@/components/form.component";
 import NextImage from "next/image";
 import Tooltip from "@/components/tooltip.component";

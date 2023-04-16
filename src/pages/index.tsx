@@ -3,7 +3,7 @@ import { InferGetServerSidePropsType } from "next";
 import { fetchAssociations } from "@/prisma/location";
 import Frame from "@/components/frame.component";
 import useTranslation from "next-translate/useTranslation";
-import { ArrowLeftCircleIcon, ArrowRightCircleIcon, CheckCircleIcon, CheckIcon, ClockIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ArrowLeftCircleIcon, ArrowRightCircleIcon, CheckCircleIcon, CheckIcon, ClockIcon, CurrencyEuroIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Button from "@/components/button.component";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,13 +17,14 @@ import { sepaSchema } from "@/schemas/sepa.schema";
 import SepaFormular from "@/formulars/sepa.formular";
 import { passwordSchema } from "@/schemas/password.schema";
 import PasswordFormular from "@/formulars/password.formular";
-import { Participant } from "@/types/participants-formular.types";
+import { Participant, Supervisor } from "@/types/participants-formular.types";
 import { Prisma } from ".prisma/client";
 import { useState } from "react";
 import Spinner from "@/components/spinner.component";
 import { Stepper } from "@/components/stepper.component";
 import { Model } from "@/components/model.component";
 import Intro from "@/components/intro.component";
+import { BASE_PRICE, HOODIE_PRICE, SHIRT_PRICE } from "@/config/price.config";
 import RegistrationCreateInput = Prisma.RegistrationCreateInput;
 
 export const getServerSideProps = async () => {
@@ -49,6 +50,41 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 	const supervisorFormular = useForm({ resolver: zodResolver(supervisorSchema), mode: "all" });
 	const participantsFormular = useForm({ resolver: zodResolver(participantsSchema), mode: "all" });
 	const sepaFormular = useForm({ resolver: zodResolver(sepaSchema), mode: "all" });
+
+	const getSupervisor = () =>
+		({
+			firstName: supervisorFormular.watch("firstName"),
+			lastName: supervisorFormular.watch("lastName"),
+			birthday: supervisorFormular.watch("birthday"),
+			shirtSize: supervisorFormular.watch("shirtSize"),
+			hoodieSize: supervisorFormular.watch("hoodieSize"),
+			vegetarianFood: supervisorFormular.watch("vegetarianFood"),
+			street: supervisorFormular.watch("street"),
+			zip: supervisorFormular.watch("zip"),
+			residence: supervisorFormular.watch("residence"),
+			phone: supervisorFormular.watch("phone"),
+			email: supervisorFormular.watch("email"),
+		} as Supervisor);
+
+	const calculateEstimatedPrice = () => {
+		let estimatedPrice = 0;
+
+		const supervisorShirtSize = supervisorFormular.watch("shirtSize");
+		const supervisorHoodieSize = supervisorFormular.watch("hoodieSize");
+		const participants = (participantsFormular.watch("participants") as (Participant & { isSecondarySupervisor: boolean })[]) || [];
+
+		estimatedPrice += BASE_PRICE; // We have one Supervisor for sure
+		if (supervisorShirtSize) estimatedPrice += SHIRT_PRICE;
+		if (supervisorHoodieSize) estimatedPrice += HOODIE_PRICE;
+
+		participants.forEach((participants) => {
+			estimatedPrice += BASE_PRICE;
+			if (participants.shirtSize) estimatedPrice += SHIRT_PRICE;
+			if (participants.hoodieSize) estimatedPrice += HOODIE_PRICE;
+		});
+
+		return estimatedPrice;
+	};
 
 	const deadline = new Date(process.env.NEXT_PUBLIC_REGISTRATION_DEADLINE || "").getTime();
 	const now = new Date().getTime();
@@ -214,25 +250,19 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 
 					<Stepper.Step label={t("participants.formular:label")} className={styles.step}>
 						<FormProvider {...participantsFormular}>
-							<ParticipantsFormular
-								supervisor={{
-									firstName: supervisorFormular.watch("firstName"),
-									lastName: supervisorFormular.watch("lastName"),
-									birthday: supervisorFormular.watch("birthday"),
-									shirtSize: supervisorFormular.watch("shirtSize"),
-									hoodieSize: supervisorFormular.watch("hoodieSize"),
-									vegetarianFood: supervisorFormular.watch("vegetarianFood"),
-									street: supervisorFormular.watch("street"),
-									zip: supervisorFormular.watch("zip"),
-									residence: supervisorFormular.watch("residence"),
-									phone: supervisorFormular.watch("phone"),
-									email: supervisorFormular.watch("email"),
-								}}
-							/>
+							<ParticipantsFormular supervisor={getSupervisor()} />
 						</FormProvider>
 					</Stepper.Step>
 
 					<Stepper.Step label={t("sepa.formular:label")} className={styles.step} disableNextStep={!sepaFormular.formState.isValid || submitStatus === "loading"} onNextStep={onRegister}>
+						<Model>
+							<Model.Icon className="bg-teal-200">
+								<CurrencyEuroIcon className="h-6 w-6 text-teal-700 stroke-2" />
+							</Model.Icon>
+							<Model.Title>{t("sepa.formular:estimated-price.title", { estimatedPrice: calculateEstimatedPrice() })}</Model.Title>
+							<Model.Text>{t("sepa.formular:estimated-price.text")}</Model.Text>
+						</Model>
+
 						<FormProvider {...sepaFormular}>
 							<SepaFormular />
 						</FormProvider>

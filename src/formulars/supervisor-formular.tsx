@@ -3,7 +3,7 @@ import { useFormContext } from "react-hook-form";
 import Input from "@/components/input.component";
 import Dropdown from "@/components/dropdown.component";
 import Checkbox from "@/components/checkbox.component";
-import { SIZES } from "@/config/clothing-sizes.config";
+import { SIZES } from "@/config/clothing.config";
 import { Form } from "@/components/form.component";
 import NextImage from "next/image";
 import Tooltip from "@/components/tooltip.component";
