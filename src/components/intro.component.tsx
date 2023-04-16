@@ -9,7 +9,7 @@ const INTRO_REMOVE_THRESHOLD = 10;
 
 const styles = {
 	container: `z-10 fixed inset-0 bg-white flex items-center justify-center animate-[ping_${INTRO_DURATION_IN_SECONDS}s_ease-in-out_${INTRO_DELAY_IN_SECONDS}s]`,
-	image: "animate-bounce",
+	image: "animate-bounce select-none pointer-events-none",
 };
 
 export default function Intro() {
