@@ -1,3 +1,11 @@
+## [1.12.2](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.12.1...v1.12.2) (2023-04-16)
+
+
+### Bug Fixes
+
+* **components:** `intro` fade animation threshold ([bbd5404](https://github.com/fl0bauer/drlg-event-registration-form/commit/bbd5404cf26467c47c7860569cb43a9b5d71a876))
+* **components:** select on model in admin area ([0612bfa](https://github.com/fl0bauer/drlg-event-registration-form/commit/0612bfa67245f2aa603ff6d8957e9c70fd352830))
+
 ## [1.12.1](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.12.0...v1.12.1) (2023-04-16)
 
 
