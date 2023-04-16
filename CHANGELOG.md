@@ -1,3 +1,10 @@
+## [1.11.2](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.11.1...v1.11.2) (2023-04-16)
+
+
+### Bug Fixes
+
+* **formulars:** `email` validation on `supervisor` formular ([c1b202c](https://github.com/fl0bauer/drlg-event-registration-form/commit/c1b202cf6d4d272753efd9b27b154cc880bb358c))
+
 ## [1.11.1](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.11.0...v1.11.1) (2023-04-13)
 
 
