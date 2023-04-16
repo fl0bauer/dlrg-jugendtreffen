@@ -9,7 +9,7 @@ const styles = {
 export default function Intro() {
 	const [animationStopped, setAnimationStopped] = useState(false);
 
-	setTimeout(() => setAnimationStopped(true), 2000 + 1000 - 10);
+	setTimeout(() => setAnimationStopped(true), 2000 + 1000 - 50);
 
 	if (animationStopped) {
 		return <></>;
