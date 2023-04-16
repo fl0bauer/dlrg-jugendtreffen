@@ -1,0 +1,64 @@
+{
+  "label": "Export",
+  "inputs": {
+    "file-name": {
+      "label": "Dateiname",
+      "errors": {
+        "required": "Bitte gebe einen Dateinamen für den Export an"
+      }
+    }
+  },
+  "export": {
+    "label": "Exportieren",
+    "sheets": {
+      "registrations": {
+        "name": "Registrierungen",
+        "fields": {
+          "association": "Landesverband",
+          "district": "Bezirk",
+          "local": "Ortsgruppe",
+          "name": "Name",
+          "address": "Adresse",
+          "birthdate": "Geburtsdatum",
+          "shirt-size": "T-Shirt Groesse",
+          "hoodie-size": "Hoodie Groesse",
+          "vegetarian-food": "Vegetarisches Essen",
+          "phone": "Handynummer",
+          "email": "E-Mail Adresse",
+          "account-owner": "Kontoinhaber",
+          "account-owner-address": "Kontoinhaber Adresse",
+          "credit-institution": "Kreditinstitut (Name und BIC)",
+          "iban": "IBAN"
+        },
+        "options": {
+          "yes": "Ja",
+          "no": "Nein"
+        }
+      },
+      "participants": {
+        "name": "Teilnehmer-innen",
+        "fields": {
+          "role": "",
+          "association": "Landesverband",
+          "district": "Bezirk",
+          "local": "Ortsgruppe",
+          "name": "Name",
+          "birthdate": "Geburtsdatum",
+          "shirt-size": "T-Shirt Groesse",
+          "hoodie-size": "Hoodie Groesse",
+          "vegetarian-food": "Vegetarisches Essen"
+        },
+        "options": {
+          "supervisor": "Betreuer*in",
+          "participant": "Teilnehmer*in",
+          "yes": "Ja",
+          "no": "Nein"
+        }
+      }
+    }
+  },
+  "no-registrations": {
+    "title": "Keine Registrierungen",
+    "text": "Bitte komme später wieder"
+  }
+}
