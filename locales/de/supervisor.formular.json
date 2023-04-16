@@ -16,7 +16,8 @@
     "birthday": {
       "label": "Geburtsdatum",
       "errors": {
-        "required": "Bitte gebe ein valides Geburtsdatum an"
+        "required": "Bitte gebe ein valides Geburtsdatum an",
+        "older-than-18-years": "Hauptbetreuer*in muss zum Zeitpunkt mindestens 18 Jahre alt sein"
       }
     },
     "vegetarian-food": {

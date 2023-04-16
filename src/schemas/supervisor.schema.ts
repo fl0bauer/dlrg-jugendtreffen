@@ -1,9 +1,19 @@
 import { z } from "zod";
+import { getAge } from "@/lib/age.lib";
 
 export const supervisorSchema = z.object({
 	firstName: z.string().nonempty("inputs.first-name.errors.required"),
 	lastName: z.string().nonempty("inputs.last-name.errors.required"),
-	birthday: z.string().nonempty("inputs.birthday.errors.required"),
+	birthday: z
+		.string()
+		.nonempty("inputs.birthday.errors.required")
+		.refine(
+			(birthdate) => {
+				const age = getAge(birthdate, process.env.NEXT_PUBLIC_BIRTHDAY_ORIENTATION_DATE);
+				return age >= 18;
+			},
+			{ message: "inputs.birthday.errors.older-than-18-years" }
+		),
 	vegetarianFood: z.boolean(),
 	shirtSize: z.string().optional(),
 	hoodieSize: z.string().optional(),
