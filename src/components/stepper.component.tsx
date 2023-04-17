@@ -9,15 +9,15 @@ const styles = {
 	stepContainer: "flex flex-col gap-8",
 	buttons: "flex flex-col gap-4 justify-end sm:flex-row",
 	indicator: {
-		list: "flex items-center gap-3 bg-white border border-slate-200 rounded-md p-4 overflow-y-auto select-none",
+		list: "flex items-center gap-3 bg-white border border-slate-200 rounded-md p-4 overflow-y-auto select-none dark:bg-slate-900 dark:border-slate-800",
 		prefix: {
-			active: "hidden items-center justify-center w-5 h-5 text-xs border border-blue-600 bg-blue-50 rounded-full shrink-0 sm:flex",
-			inactive: "hidden items-center justify-center w-5 h-5 text-xs border border-slate-500 rounded-full shrink-0 sm:flex",
+			active: "hidden items-center justify-center w-5 h-5 text-xs border border-blue-600 bg-blue-50 rounded-full shrink-0 sm:flex dark:border-blue-300 dark:bg-blue-500 dark:bg-opacity-25",
+			inactive: "hidden items-center justify-center w-5 h-5 text-xs border border-slate-500 rounded-full shrink-0 sm:flex dark:border-slate-400",
 		},
 		icon: "w-4 h-4 stroke-2",
 		item: {
-			active: "flex items-center gap-2 text-blue-600 font-medium",
-			inactive: "flex items-center gap-2 text-slate-500",
+			active: "flex items-center gap-2 text-blue-600 font-medium dark:text-blue-400",
+			inactive: "flex items-center gap-2 text-slate-500 dark:text-slate-400",
 		},
 	},
 };
