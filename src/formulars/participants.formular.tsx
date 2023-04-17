@@ -34,16 +34,26 @@ function ParticipantsTable({ preSelectedSupervisor, participants, onRemovePartic
 	const Check = <CheckIcon className="h-4 w-4 text-green-500 dark:text-green-300" />;
 	const Cross = <XMarkIcon className="h-4 w-4 text-rose-500 dark:text-rose-300" />;
 
+	const formatDate = (date: string) => {
+		if (!date) return "";
+
+		const [year, month, day] = date.split("-");
+		return `${day}.${month}.${year}`;
+	};
+
 	const Row = ({ participant, role, actions }: { participant: Participant; role: ReactElement; actions: ReactElement }) => (
 		<Table.Row>
 			<Table.Column>{role}</Table.Column>
 			<Table.Column className={styles.table.columns.lead}>
 				{participant.firstName} {participant.lastName}
 			</Table.Column>
-			<Table.Column>{participant.birthday}</Table.Column>
+			<Table.Column>{formatDate(participant.birthday)}</Table.Column>
 			<Table.Column>{participant.shirtSize || "-"}</Table.Column>
 			<Table.Column>{participant.hoodieSize || "-"}</Table.Column>
 			<Table.Column>{participant.vegetarianFood ? Check : Cross}</Table.Column>
+			<Table.Column className="whitespace-nowrap overflow-hidden max-w-[128px] text-ellipsis" title={participant.notes}>
+				{participant.notes || "-"}
+			</Table.Column>
 			<Table.Column>{actions}</Table.Column>
 		</Table.Row>
 	);
@@ -58,6 +68,7 @@ function ParticipantsTable({ preSelectedSupervisor, participants, onRemovePartic
 					<Table.HeadColumn>{t("table.labels.shirt-size")}</Table.HeadColumn>
 					<Table.HeadColumn>{t("table.labels.hoodie-size")}</Table.HeadColumn>
 					<Table.HeadColumn>{t("table.labels.vegetarian-food")}</Table.HeadColumn>
+					<Table.HeadColumn className="max-w-[128px]">{t("table.labels.notes")}</Table.HeadColumn>
 					<Table.HeadColumn>{t("table.labels.actions")}</Table.HeadColumn>
 				</Table.Head>
 
@@ -103,10 +114,10 @@ export default function ParticipantsFormular({ supervisor }: ParticipantsFormula
 		const age = getAge(watch("birthday"), process.env.NEXT_PUBLIC_BIRTHDAY_ORIENTATION_DATE);
 		return age >= requiredAge;
 	};
-	const getParticipant = () => ({ firstName: getValues("firstName"), lastName: getValues("lastName"), birthday: getValues("birthday"), shirtSize: getValues("shirtSize"), hoodieSize: getValues("hoodieSize"), vegetarianFood: getValues("vegetarianFood") } as Participant);
+	const getParticipant = () => ({ firstName: getValues("firstName"), lastName: getValues("lastName"), birthday: getValues("birthday"), shirtSize: getValues("shirtSize"), hoodieSize: getValues("hoodieSize"), vegetarianFood: getValues("vegetarianFood"), notes: getValues("notes") } as Participant);
 	const appendParticipant = (isSecondarySupervisor: boolean) => append({ ...getParticipant(), isSecondarySupervisor });
 	const clearValues = () => {
-		["firstName", "lastName", "birthday", "shirtSize", "hoodieSize"].forEach((field) => setValue(field, ""));
+		["firstName", "lastName", "birthday", "shirtSize", "hoodieSize", "notes"].forEach((field) => setValue(field, ""));
 		["vegetarianFood"].forEach((field) => setValue(field, false));
 	};
 
@@ -154,6 +165,10 @@ export default function ParticipantsFormular({ supervisor }: ParticipantsFormula
 							<option key={size}>{size}</option>
 						))}
 					</Dropdown>
+				</Form.Group>
+
+				<Form.Group columns={1}>
+					<Input id="participant-notes" label={getLabel("notes")} error={getErrors("notes")} {...register("notes")} />
 				</Form.Group>
 
 				<Form.Group columns={1}>

@@ -13,6 +13,7 @@ export interface Participant {
 	shirtSize: string;
 	hoodieSize: string;
 	vegetarianFood: boolean;
+	notes: string;
 }
 
 export interface ParticipantsTableProps {

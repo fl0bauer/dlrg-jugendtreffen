@@ -7,4 +7,5 @@ export const participantsSchema = z.object({
 	vegetarianFood: z.boolean(),
 	shirtSize: z.string().optional(),
 	hoodieSize: z.string().optional(),
+	notes: z.string(),
 });

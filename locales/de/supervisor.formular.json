@@ -59,6 +59,9 @@
         "required": "Bitte gebe eine E-Mail an",
         "email": "Bitte gebe eine valide E-Mail an"
       }
+    },
+    "notes": {
+      "label": "Bemerkungen (z.B. Allergien, Unverträglichkeiten...)"
     }
   }
 }

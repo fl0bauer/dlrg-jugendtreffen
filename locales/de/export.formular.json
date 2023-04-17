@@ -25,6 +25,7 @@
           "vegetarian-food": "Vegetarisches Essen",
           "phone": "Handynummer",
           "email": "E-Mail Adresse",
+          "notes": "Bemerkungen",
           "account-owner": "Kontoinhaber",
           "account-owner-address": "Kontoinhaber Adresse",
           "credit-institution": "Kreditinstitut (Name und BIC)",
@@ -46,7 +47,8 @@
           "birthdate": "Geburtsdatum",
           "shirt-size": "T-Shirt Groesse",
           "hoodie-size": "Hoodie Groesse",
-          "vegetarian-food": "Vegetarisches Essen"
+          "vegetarian-food": "Vegetarisches Essen",
+          "notes": "Bemerkungen"
         },
         "options": {
           "supervisor": "Betreuer*in",
