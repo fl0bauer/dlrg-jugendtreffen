@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.13.0...v1.13.1) (2023-04-17)
+
+
+### Bug Fixes
+
+* **components:** `table` `x-overflow` ([aa970b3](https://github.com/fl0bauer/drlg-event-registration-form/commit/aa970b3b3319bd3a90149c3db5afabc745062a92))
+
 # [1.13.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.12.4...v1.13.0) (2023-04-17)
 
 
