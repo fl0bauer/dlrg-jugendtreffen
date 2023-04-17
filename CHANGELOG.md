@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.14.0...v1.15.0) (2023-04-17)
+
+
+### Features
+
+* **admin:** reformat export excel ([0a9c4e4](https://github.com/fl0bauer/drlg-event-registration-form/commit/0a9c4e4e97a1c71ee4dae20c7ab075254322adab)), closes [#43](https://github.com/fl0bauer/drlg-event-registration-form/issues/43)
+
 # [1.14.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.13.1...v1.14.0) (2023-04-17)
 
 
