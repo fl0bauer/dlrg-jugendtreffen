@@ -64,6 +64,7 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 			residence: supervisorFormular.watch("residence"),
 			phone: supervisorFormular.watch("phone"),
 			email: supervisorFormular.watch("email"),
+			notes: supervisorFormular.watch("notes"),
 		} as Supervisor);
 
 	const calculateEstimatedPrice = () => {
@@ -114,6 +115,7 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 					address: `${supervisorValues.street}, ${supervisorValues.zip} ${supervisorValues.residence}`,
 					phone: supervisorValues.phone,
 					email: supervisorValues.email,
+					notes: supervisorValues.notes,
 				},
 				participants: (participantsValues.participants as (Participant & { isSecondarySupervisor: boolean })[]).map((participant) => ({
 					isSecondarySupervisor: participant.isSecondarySupervisor,
@@ -123,6 +125,7 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 					shirtSize: participant.shirtSize,
 					hoodieSize: participant.hoodieSize,
 					vegetarianFood: participant.vegetarianFood,
+					notes: participant.notes,
 				})),
 				bank: {
 					accountOwner: sepaValues.accountOwner,

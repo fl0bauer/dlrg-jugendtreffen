@@ -73,6 +73,10 @@ export default function SupervisorFormular() {
 			</Form.Group>
 
 			<Form.Group columns={1}>
+				<Input id="supervisor-notes" label={getLabel("notes")} error={getErrors("notes")} {...register("notes")} />
+			</Form.Group>
+
+			<Form.Group columns={1}>
 				<Checkbox id="supervisor-vegetarian-food" label={getLabel("vegetarian-food")} error={getErrors("vegetarianFood")} {...register("vegetarianFood")} />
 			</Form.Group>
 		</Form>

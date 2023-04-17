@@ -47,6 +47,7 @@ type Supervisor {
   address        String
   phone          String
   email          String
+  notes          String?
 }
 
 type Participant {
@@ -57,6 +58,7 @@ type Participant {
   shirtSize             String?
   hoodieSize            String?
   vegetarianFood        Boolean
+  notes                 String?
 }
 
 type Bank {

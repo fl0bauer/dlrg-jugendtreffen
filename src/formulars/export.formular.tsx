@@ -45,6 +45,7 @@ export default function ExportFormular({ registrations }: ExportFormularProps) {
 						[getKey("registrations", "vegetarian-food")]: registration.supervisor.vegetarianFood ? t("export.sheets.registrations.options.yes") : t("export.sheets.registrations.options.no"),
 						[getKey("registrations", "phone")]: registration.supervisor.phone,
 						[getKey("registrations", "email")]: registration.supervisor.email,
+						[getKey("registrations", "notes")]: registration.supervisor.notes,
 						[getKey("registrations", "account-owner")]: registration.bank.accountOwner,
 						[getKey("registrations", "account-owner-address")]: registration.bank.address,
 						[getKey("registrations", "credit-institution")]: registration.bank.creditInstitution,
@@ -68,6 +69,7 @@ export default function ExportFormular({ registrations }: ExportFormularProps) {
 						[getKey("participants", "shirt-size")]: participant.shirtSize,
 						[getKey("participants", "hoodie-size")]: participant.hoodieSize,
 						[getKey("participants", "vegetarian-food")]: participant.vegetarianFood ? t("export.sheets.participants.options.yes") : t("export.sheets.participants.options.no"),
+						[getKey("participants", "notes")]: participant.notes,
 					})),
 			},
 		]);

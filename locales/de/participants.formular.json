@@ -9,10 +9,11 @@
     "labels": {
       "roles": "",
       "name": "Name",
-      "birthday": "Geburtsdatum",
-      "shirt-size": "T-Shirt Größe",
+      "birthday": "Geburtstag",
+      "shirt-size": "Shirt Größe",
       "hoodie-size": "Hoodie Größe",
-      "vegetarian-food": "Vegetarisches Essen",
+      "vegetarian-food": "Vegetarisch",
+      "notes": "Bemerkungen",
       "actions": ""
     },
     "actions": {
@@ -46,6 +47,9 @@
     },
     "hoodie-size": {
       "label": "Hoodie Größe"
+    },
+    "notes": {
+      "label": "Bemerkungen (z.B. Allergien, Unverträglichkeiten...)"
     }
   },
   "actions": {

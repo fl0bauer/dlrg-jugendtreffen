@@ -8,8 +8,8 @@ const styles = {
 	tbody: "bg-white dark:bg-slate-800 dark:text-slate-400",
 	row: "odd:bg-white even:bg-slate-50 border-t border-t-slate-200 dark:even:bg-slate-900 dark:odd:bg-slate-900 dark:border-t-slate-800",
 	column: {
-		thead: "px-6 py-3",
-		tbody: "px-6 py-3",
+		thead: "px-5 py-3",
+		tbody: "px-5 py-3",
 	},
 };
 
