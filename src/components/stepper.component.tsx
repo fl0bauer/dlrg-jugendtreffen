@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { StepperIndicatorProps, StepperIndicatorStepProps, StepperProps, StepProps } from "@/types/stepper.types";
-import { Children, cloneElement, useState } from "react";
+import { Children, cloneElement, useEffect, useRef, useState } from "react";
 import { cs } from "@/lib/styles.lib";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 
@@ -98,11 +98,19 @@ Stepper.Indicator = function StepperIndicator({ children, className, ...props }:
 };
 
 Stepper.IndicatorStep = function StepperIndicatorStep({ children, prefix = "", active = false, showArrows = false, className, ...props }: StepperIndicatorStepProps) {
+	const ref = useRef<HTMLLIElement>(null);
+
+	useEffect(() => {
+		if (!active || !ref.current) return;
+
+		ref.current.scrollIntoView({ block: "center", inline: "center", behavior: "smooth" });
+	}, [active]);
+
 	if (active) {
 		const classes = classNames(styles.indicator.item.active, className);
 
 		return (
-			<li className={classes} {...props}>
+			<li className={classes} ref={ref} {...props}>
 				<span className={styles.indicator.prefix.active}>{prefix}</span>
 				{children}
 				{showArrows && <ArrowRightIcon className={styles.indicator.icon} />}
