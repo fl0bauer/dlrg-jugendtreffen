@@ -5,7 +5,8 @@ const styles = {
 	form: "flex flex-col gap-8 p-8 bg-white border border-slate-200 rounded-md",
 	group: {
 		container: "grid gap-4",
-		columns: ["grid-cols-1", "grid-cols-2", "grid-cols-3", "grid-cols-4", "grid-cols-5", "grid-cols-6", "grid-cols-7", "grid-cols-8", "grid-cols-9", "grid-cols-10", "grid-cols-11", "grid-cols-12"],
+		column: "grid-cols-1",
+		columns: ["sm:grid-cols-1", "sm:grid-cols-2", "sm:grid-cols-3", "sm:grid-cols-4", "sm:grid-cols-5", "sm:grid-cols-6", "sm:grid-cols-7", "sm:grid-cols-8", "sm:grid-cols-9", "sm:grid-cols-10", "sm:grid-cols-11", "sm:grid-cols-12"],
 	},
 };
 
@@ -31,7 +32,7 @@ export function Form({ children, className, onSubmit, ...props }: FormProps) {
 }
 
 Form.Group = function Group({ children, columns, className, ...props }: FormGroupProps) {
-	const classes = classNames(styles.group.container, styles.group.columns[columns - 1], className);
+	const classes = classNames(styles.group.container, styles.group.column, styles.group.columns[columns - 1], className);
 
 	return (
 		<div className={classes} {...props}>
