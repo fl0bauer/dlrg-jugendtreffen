@@ -17,13 +17,13 @@ import { getAge } from "@/lib/age.lib";
 
 const styles = {
 	container: "flex flex-col gap-8",
-	link: "font-medium text-blue-600 cursor-pointer hover:underline",
-	linkDisabled: "font-medium text-slate-400 cursor-not-allowed",
-	actions: "flex self-end gap-4",
+	link: "font-medium text-blue-600 cursor-pointer hover:underline dark:text-blue-300",
+	linkDisabled: "font-medium text-slate-400 cursor-not-allowed dark:text-slate-500",
+	actions: "flex flex-col gap-4 sm:flex-row sm:self-end",
 	table: {
 		container: "overflow-x-auto",
 		columns: {
-			lead: "font-medium text-slate-900 whitespace-nowrap",
+			lead: "font-medium text-slate-900 whitespace-nowrap dark:text-slate-200",
 		},
 	},
 };
@@ -31,8 +31,8 @@ const styles = {
 function ParticipantsTable({ preSelectedSupervisor, participants, onRemoveParticipant }: ParticipantsTableProps) {
 	const { t } = useTranslation("participants.formular");
 
-	const Check = <CheckIcon className="h-4 w-4 text-green-500" />;
-	const Cross = <XMarkIcon className="h-4 w-4 text-rose-500" />;
+	const Check = <CheckIcon className="h-4 w-4 text-green-500 dark:text-green-300" />;
+	const Cross = <XMarkIcon className="h-4 w-4 text-rose-500 dark:text-rose-300" />;
 
 	const Row = ({ participant, role, actions }: { participant: Participant; role: ReactElement; actions: ReactElement }) => (
 		<Table.Row>
@@ -50,8 +50,8 @@ function ParticipantsTable({ preSelectedSupervisor, participants, onRemovePartic
 
 	return (
 		<div className={styles.table.container}>
-			<Table>
-				<Table.Head>
+			<Table className="max-h-72 overflow-y-auto">
+				<Table.Head className="sticky top-0">
 					<Table.HeadColumn>{t("table.labels.roles")}</Table.HeadColumn>
 					<Table.HeadColumn>{t("table.labels.name")}</Table.HeadColumn>
 					<Table.HeadColumn>{t("table.labels.birthday")}</Table.HeadColumn>
@@ -170,7 +170,7 @@ export default function ParticipantsFormular({ supervisor }: ParticipantsFormula
 							clearValues();
 						}}
 					>
-						<UserPlusIcon className="h-4 w-4" />
+						<UserPlusIcon className="hidden h-4 w-4 sm:block" />
 						{t("actions.add-supervisor")}
 					</Button>
 
@@ -183,7 +183,7 @@ export default function ParticipantsFormular({ supervisor }: ParticipantsFormula
 							clearValues();
 						}}
 					>
-						<UserPlusIcon className="h-4 w-4" />
+						<UserPlusIcon className="hidden h-4 w-4 sm:block" />
 						{t("actions.add-participant")}
 					</Button>
 				</div>

@@ -151,8 +151,8 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 				<Frame>
 					<div className={styles.modelContainer}>
 						<Model>
-							<Model.Icon className="bg-pink-200">
-								<ClockIcon className="h-6 w-6 text-pink-700 stroke-2" />
+							<Model.Icon className="bg-pink-200 dark:bg-pink-700 dark:bg-opacity-25">
+								<ClockIcon className="h-6 w-6 text-pink-700 stroke-2 dark:text-pink-400" />
 							</Model.Icon>
 							<Model.Title>{t("general.formular:deadline.title")}</Model.Title>
 							<Model.Text>{t("general.formular:deadline.text")}</Model.Text>
@@ -171,8 +171,8 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 				<Frame>
 					<div className={styles.modelContainer}>
 						<Model>
-							<Model.Icon className="bg-green-200">
-								<CheckIcon className="h-6 w-6 text-green-700 stroke-2" />
+							<Model.Icon className="bg-green-200 dark:bg-green-700 dark:bg-opacity-25">
+								<CheckIcon className="h-6 w-6 text-green-700 stroke-2 dark:text-green-400" />
 							</Model.Icon>
 							<Model.Title>{t("general.formular:success.title")}</Model.Title>
 							<Model.Text>{t("general.formular:success.text")}</Model.Text>
@@ -191,8 +191,8 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 				<Frame>
 					<div className={styles.modelContainer}>
 						<Model>
-							<Model.Icon className="bg-rose-200">
-								<XMarkIcon className="h-6 w-6 text-rose-700 stroke-2" />
+							<Model.Icon className="bg-rose-200 dark:bg-rose-700 dark:bg-opacity-25">
+								<XMarkIcon className="h-6 w-6 text-rose-700 stroke-2 dark:text-rose-400" />
 							</Model.Icon>
 							<Model.Title>{t("general.formular:error.title")}</Model.Title>
 							<Model.Text>{t("general.formular:error.text")}</Model.Text>
@@ -213,20 +213,20 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 				<Stepper
 					previousStepButton={
 						<Button variant="secondary">
-							<ArrowLeftCircleIcon className="h-4 w-4" />
+							<ArrowLeftCircleIcon className="hidden h-4 w-4 sm:block" />
 							{t("general.formular:stepper.previous-step")}
 						</Button>
 					}
 					nextStepButton={
 						<Button>
 							{t("general.formular:stepper.next-step")}
-							<ArrowRightCircleIcon className="h-4 w-4" />
+							<ArrowRightCircleIcon className="hidden h-4 w-4 sm:block" />
 						</Button>
 					}
 					submitButton={
 						<Button>
 							{t("general.formular:stepper.submit")}
-							{submitStatus === "loading" ? <Spinner color="blue" screenReaderText="Loading" /> : <CheckCircleIcon className="h-4 w-4" />}
+							{submitStatus === "loading" ? <Spinner color="blue" screenReaderText="Loading" /> : <CheckCircleIcon className="hidden h-4 w-4 sm:block" />}
 						</Button>
 					}
 				>
@@ -256,8 +256,8 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 
 					<Stepper.Step label={t("sepa.formular:label")} className={styles.step} disableNextStep={!sepaFormular.formState.isValid || submitStatus === "loading"} onNextStep={onRegister}>
 						<Model>
-							<Model.Icon className="bg-teal-200">
-								<CurrencyEuroIcon className="h-6 w-6 text-teal-700 stroke-2" />
+							<Model.Icon className="bg-teal-200 dark:bg-teal-700 dark:bg-opacity-25">
+								<CurrencyEuroIcon className="h-6 w-6 text-teal-700 stroke-2 dark:text-teal-400" />
 							</Model.Icon>
 							<Model.Title>{t("sepa.formular:estimated-price.title", { estimatedPrice: calculateEstimatedPrice() })}</Model.Title>
 							<Model.Text>{t("sepa.formular:estimated-price.text")}</Model.Text>
