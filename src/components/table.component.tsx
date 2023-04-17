@@ -2,8 +2,8 @@ import { TableBodyProps, TableColumnProps, TableHeadColumnProps, TableHeadProps,
 import classNames from "classnames";
 
 const styles = {
-	container: "border border-slate-200 rounded-md overflow-y-auto dark:border-slate-700",
-	table: "w-full text-sm text-left text-slate-600 select-none dark:text-slate-300",
+	container: "border border-slate-200 rounded-md dark:border-slate-700",
+	table: "w-full text-sm text-left text-slate-600 rounded-md overflow-x-hidden select-none dark:text-slate-300",
 	thead: "text-xs whitespace-nowrap text-slate-700 bg-slate-50 dark:bg-slate-900 dark:text-slate-300",
 	tbody: "bg-white dark:bg-slate-800 dark:text-slate-400",
 	row: "odd:bg-white even:bg-slate-50 border-t border-t-slate-200 dark:even:bg-slate-900 dark:odd:bg-slate-900 dark:border-t-slate-800",
