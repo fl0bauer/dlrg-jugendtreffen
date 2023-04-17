@@ -1,3 +1,10 @@
+## [1.12.3](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.12.2...v1.12.3) (2023-04-16)
+
+
+### Bug Fixes
+
+* **components:** default form submit on enter ([b89f787](https://github.com/fl0bauer/drlg-event-registration-form/commit/b89f787fa66ade0de5cfbda34f876bd81ad33ab2))
+
 ## [1.12.2](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.12.1...v1.12.2) (2023-04-16)
 
 
