@@ -32,45 +32,53 @@ export default function ExportFormular({ registrations }: ExportFormularProps) {
 		const excel = toExcel([
 			{
 				sheetName: t("export.sheets.registrations.name"),
-				data: registrations.map((registration) => {
-					return {
-						[getKey("registrations", "association")]: registration.location.association,
-						[getKey("registrations", "district")]: registration.location.district,
-						[getKey("registrations", "local")]: registration.location.local,
-						[getKey("registrations", "name")]: toName(registration.supervisor.firstName, registration.supervisor.lastName),
-						[getKey("registrations", "address")]: registration.supervisor.address,
-						[getKey("registrations", "birthdate")]: formatDate(registration.supervisor.birthday),
-						[getKey("registrations", "shirt-size")]: registration.supervisor.shirtSize,
-						[getKey("registrations", "hoodie-size")]: registration.supervisor.hoodieSize,
-						[getKey("registrations", "vegetarian-food")]: registration.supervisor.vegetarianFood ? t("export.sheets.registrations.options.yes") : t("export.sheets.registrations.options.no"),
-						[getKey("registrations", "phone")]: registration.supervisor.phone,
-						[getKey("registrations", "email")]: registration.supervisor.email,
-						[getKey("registrations", "notes")]: registration.supervisor.notes,
-						[getKey("registrations", "account-owner")]: registration.bank.accountOwner,
-						[getKey("registrations", "account-owner-address")]: registration.bank.address,
-						[getKey("registrations", "credit-institution")]: registration.bank.creditInstitution,
-						[getKey("registrations", "iban")]: registration.bank.iban,
-					};
-				}),
+				data: registrations.map((registration) => ({
+					[getKey("registrations", "association")]: registration.location.association,
+					[getKey("registrations", "district")]: registration.location.district,
+					[getKey("registrations", "local")]: registration.location.local,
+					[getKey("registrations", "name")]: toName(registration.supervisor.firstName, registration.supervisor.lastName),
+					[getKey("registrations", "address")]: registration.supervisor.address,
+					[getKey("registrations", "birthdate")]: formatDate(registration.supervisor.birthday),
+					[getKey("registrations", "phone")]: registration.supervisor.phone,
+					[getKey("registrations", "email")]: registration.supervisor.email,
+					[getKey("registrations", "account-owner")]: registration.bank.accountOwner,
+					[getKey("registrations", "account-owner-address")]: registration.bank.address,
+					[getKey("registrations", "credit-institution")]: registration.bank.creditInstitution,
+					[getKey("registrations", "iban")]: registration.bank.iban,
+				})),
 			},
 			{
 				sheetName: t("export.sheets.participants.name"),
-				data: registrations
-					.map((registration) => registration.participants.map((participant) => ({ ...participant, location: registration.location })))
-					.flat()
-					.sort((a, b) => (b.isSecondarySupervisor ? 1 : -1))
-					.map((participant) => ({
-						[getKey("participants", "role")]: participant.isSecondarySupervisor ? t("export.sheets.participants.options.supervisor") : t("export.sheets.participants.options.participant"),
-						[getKey("participants", "association")]: participant.location.association,
-						[getKey("participants", "district")]: participant.location.district,
-						[getKey("participants", "local")]: participant.location.local,
-						[getKey("participants", "name")]: toName(participant.firstName, participant.lastName),
-						[getKey("participants", "birthdate")]: formatDate(participant.birthday),
-						[getKey("participants", "shirt-size")]: participant.shirtSize,
-						[getKey("participants", "hoodie-size")]: participant.hoodieSize,
-						[getKey("participants", "vegetarian-food")]: participant.vegetarianFood ? t("export.sheets.participants.options.yes") : t("export.sheets.participants.options.no"),
-						[getKey("participants", "notes")]: participant.notes,
+				data: [
+					...registrations.map((registration) => ({
+						[getKey("participants", "role")]: t("export.sheets.participants.options.main-supervisor"),
+						[getKey("participants", "association")]: registration.location.association,
+						[getKey("participants", "district")]: registration.location.district,
+						[getKey("participants", "local")]: registration.location.local,
+						[getKey("participants", "name")]: toName(registration.supervisor.firstName, registration.supervisor.lastName),
+						[getKey("participants", "birthdate")]: formatDate(registration.supervisor.birthday),
+						[getKey("participants", "shirt-size")]: registration.supervisor.shirtSize,
+						[getKey("participants", "hoodie-size")]: registration.supervisor.hoodieSize,
+						[getKey("participants", "vegetarian-food")]: registration.supervisor.vegetarianFood ? t("export.sheets.participants.options.yes") : t("export.sheets.participants.options.no"),
+						[getKey("participants", "notes")]: registration.supervisor.notes,
 					})),
+					...registrations
+						.map((registration) => registration.participants.map((participant) => ({ ...participant, location: registration.location })))
+						.flat()
+						.sort((a, b) => (b.isSecondarySupervisor ? 1 : -1))
+						.map((participant) => ({
+							[getKey("participants", "role")]: participant.isSecondarySupervisor ? t("export.sheets.participants.options.supervisor") : t("export.sheets.participants.options.participant"),
+							[getKey("participants", "association")]: participant.location.association,
+							[getKey("participants", "district")]: participant.location.district,
+							[getKey("participants", "local")]: participant.location.local,
+							[getKey("participants", "name")]: toName(participant.firstName, participant.lastName),
+							[getKey("participants", "birthdate")]: formatDate(participant.birthday),
+							[getKey("participants", "shirt-size")]: participant.shirtSize,
+							[getKey("participants", "hoodie-size")]: participant.hoodieSize,
+							[getKey("participants", "vegetarian-food")]: participant.vegetarianFood ? t("export.sheets.participants.options.yes") : t("export.sheets.participants.options.no"),
+							[getKey("participants", "notes")]: participant.notes,
+						})),
+				],
 			},
 		]);
 
