@@ -1,3 +1,10 @@
+## [1.12.4](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.12.3...v1.12.4) (2023-04-17)
+
+
+### Bug Fixes
+
+* **components:** keep intro animation state at end ([40a18ac](https://github.com/fl0bauer/drlg-event-registration-form/commit/40a18ace2c7254884be49f489a604ddab638247c))
+
 ## [1.12.3](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.12.2...v1.12.3) (2023-04-16)
 
 
