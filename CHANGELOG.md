@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.13.1...v1.14.0) (2023-04-17)
+
+
+### Features
+
+* **formulars:** add `notes` field to `supervisor` and `participants` formular ([a7c8c72](https://github.com/fl0bauer/drlg-event-registration-form/commit/a7c8c72971091cb5247daeb4def83e5293d91c48))
+
 ## [1.13.1](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.13.0...v1.13.1) (2023-04-17)
 
 
