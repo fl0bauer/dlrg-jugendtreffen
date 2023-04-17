@@ -2,9 +2,9 @@ import { TableBodyProps, TableColumnProps, TableHeadColumnProps, TableHeadProps,
 import classNames from "classnames";
 
 const styles = {
-	container: "border border-slate-200 rounded-md overflow-hidden",
+	container: "border border-slate-200 rounded-md overflow-y-auto",
 	table: "w-full text-sm text-left text-slate-600 select-none",
-	thead: "text-xs text-slate-700 bg-slate-50",
+	thead: "text-xs whitespace-nowrap text-slate-700 bg-slate-50",
 	tbody: "bg-white",
 	row: "odd:bg-white even:bg-slate-50 border-t",
 	column: {
@@ -14,10 +14,10 @@ const styles = {
 };
 
 export function Table({ children, className, ...props }: TableProps) {
-	const classes = classNames(styles.table, className);
+	const classes = classNames(styles.container, className);
 	return (
-		<div className={styles.container}>
-			<table className={classes} {...props}>
+		<div className={classes}>
+			<table className={styles.table} {...props}>
 				{children}
 			</table>
 		</div>

@@ -50,9 +50,9 @@ function ParticipantsTable({ preSelectedSupervisor, participants, onRemovePartic
 
 	return (
 		<div className={styles.table.container}>
-			<Table>
-				<Table.Head>
-					<Table.HeadColumn>{t("table.labels.roles")}</Table.HeadColumn>
+			<Table className="max-h-72 overflow-y-auto">
+				<Table.Head className="sticky top-0">
+					<Table.HeadColumn className="border-b border-b-slate-200">{t("table.labels.roles")}</Table.HeadColumn>
 					<Table.HeadColumn>{t("table.labels.name")}</Table.HeadColumn>
 					<Table.HeadColumn>{t("table.labels.birthday")}</Table.HeadColumn>
 					<Table.HeadColumn>{t("table.labels.shirt-size")}</Table.HeadColumn>
