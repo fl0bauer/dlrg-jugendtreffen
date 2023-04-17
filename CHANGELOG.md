@@ -1,3 +1,14 @@
+# [1.13.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.12.4...v1.13.0) (2023-04-17)
+
+
+### Features
+
+* **components:** `scrollIntoView` for `Stepper.IndicatorStep` ([66f5a80](https://github.com/fl0bauer/drlg-event-registration-form/commit/66f5a80a3f0e2207a2c7388c70a96564da6474a7))
+* **components:** add responsiveness for buttons ([bc07a9f](https://github.com/fl0bauer/drlg-event-registration-form/commit/bc07a9fec938c88fc0165dcaf486cfe786b602fd))
+* **components:** add responsiveness for form groups ([4d43c6a](https://github.com/fl0bauer/drlg-event-registration-form/commit/4d43c6ad19716c7452dd8682ff20d3c1fb6efc6f))
+* **components:** add responsiveness for table ([1102383](https://github.com/fl0bauer/drlg-event-registration-form/commit/110238379bf8dc9e99f9c4dfed03f3bbe726f40b))
+* **components:** introduce dark-mode ([5d86301](https://github.com/fl0bauer/drlg-event-registration-form/commit/5d8630157875d9d4e932b20fc071aee0918083b1))
+
 ## [1.12.4](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.12.3...v1.12.4) (2023-04-17)
 
 
