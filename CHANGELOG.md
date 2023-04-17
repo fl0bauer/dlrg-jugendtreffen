@@ -1,3 +1,10 @@
+## [1.15.1](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.15.0...v1.15.1) (2023-04-17)
+
+
+### Bug Fixes
+
+* **lib:** empty date function input ([c975e21](https://github.com/fl0bauer/drlg-event-registration-form/commit/c975e219a263a68cf260e6728b4c59e778ef2138))
+
 # [1.15.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.14.0...v1.15.0) (2023-04-17)
 
 
