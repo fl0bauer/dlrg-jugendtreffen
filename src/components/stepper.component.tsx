@@ -7,7 +7,7 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 const styles = {
 	stepperContainer: "flex flex-col gap-8",
 	stepContainer: "flex flex-col gap-8",
-	buttons: "flex gap-4 justify-end",
+	buttons: "flex flex-col gap-4 justify-end sm:flex-row",
 	indicator: {
 		list: "flex items-center gap-3 bg-white border border-slate-200 rounded-md p-4 overflow-y-auto select-none",
 		prefix: {

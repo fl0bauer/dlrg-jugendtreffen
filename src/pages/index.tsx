@@ -213,20 +213,20 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 				<Stepper
 					previousStepButton={
 						<Button variant="secondary">
-							<ArrowLeftCircleIcon className="h-4 w-4" />
+							<ArrowLeftCircleIcon className="hidden h-4 w-4 sm:block" />
 							{t("general.formular:stepper.previous-step")}
 						</Button>
 					}
 					nextStepButton={
 						<Button>
 							{t("general.formular:stepper.next-step")}
-							<ArrowRightCircleIcon className="h-4 w-4" />
+							<ArrowRightCircleIcon className="hidden h-4 w-4 sm:block" />
 						</Button>
 					}
 					submitButton={
 						<Button>
 							{t("general.formular:stepper.submit")}
-							{submitStatus === "loading" ? <Spinner color="blue" screenReaderText="Loading" /> : <CheckCircleIcon className="h-4 w-4" />}
+							{submitStatus === "loading" ? <Spinner color="blue" screenReaderText="Loading" /> : <CheckCircleIcon className="hidden h-4 w-4 sm:block" />}
 						</Button>
 					}
 				>

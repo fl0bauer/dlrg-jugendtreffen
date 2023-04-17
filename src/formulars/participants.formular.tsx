@@ -19,7 +19,7 @@ const styles = {
 	container: "flex flex-col gap-8",
 	link: "font-medium text-blue-600 cursor-pointer hover:underline",
 	linkDisabled: "font-medium text-slate-400 cursor-not-allowed",
-	actions: "flex self-end gap-4",
+	actions: "flex flex-col gap-4 sm:flex-row sm:self-end",
 	table: {
 		container: "overflow-x-auto",
 		columns: {
@@ -170,7 +170,7 @@ export default function ParticipantsFormular({ supervisor }: ParticipantsFormula
 							clearValues();
 						}}
 					>
-						<UserPlusIcon className="h-4 w-4" />
+						<UserPlusIcon className="hidden h-4 w-4 sm:block" />
 						{t("actions.add-supervisor")}
 					</Button>
 
@@ -183,7 +183,7 @@ export default function ParticipantsFormular({ supervisor }: ParticipantsFormula
 							clearValues();
 						}}
 					>
-						<UserPlusIcon className="h-4 w-4" />
+						<UserPlusIcon className="hidden h-4 w-4 sm:block" />
 						{t("actions.add-participant")}
 					</Button>
 				</div>
