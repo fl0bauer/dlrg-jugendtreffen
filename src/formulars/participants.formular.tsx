@@ -13,7 +13,7 @@ import { Form } from "@/components/form.component";
 import NextImage from "next/image";
 import Tooltip from "@/components/tooltip.component";
 import { ReactElement } from "react";
-import { getAge } from "@/lib/age.lib";
+import { formatDate, getAge } from "@/lib/date.lib";
 
 const styles = {
 	container: "flex flex-col gap-8",
@@ -33,13 +33,6 @@ function ParticipantsTable({ preSelectedSupervisor, participants, onRemovePartic
 
 	const Check = <CheckIcon className="h-4 w-4 text-green-500 dark:text-green-300" />;
 	const Cross = <XMarkIcon className="h-4 w-4 text-rose-500 dark:text-rose-300" />;
-
-	const formatDate = (date: string) => {
-		if (!date) return "";
-
-		const [year, month, day] = date.split("-");
-		return `${day}.${month}.${year}`;
-	};
 
 	const Row = ({ participant, role, actions }: { participant: Participant; role: ReactElement; actions: ReactElement }) => (
 		<Table.Row>

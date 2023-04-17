@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { getAge } from "@/lib/age.lib";
+import { getAge } from "@/lib/date.lib";
 
 export const supervisorSchema = z.object({
 	firstName: z.string().nonempty("inputs.first-name.errors.required"),

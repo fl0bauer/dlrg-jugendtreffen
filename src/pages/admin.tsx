@@ -31,6 +31,7 @@ export default function Admin({ registrations }: InferGetServerSidePropsType<typ
 	const { t } = useTranslation();
 	const passwordFormular = useForm({ resolver: zodResolver(passwordSchema(process.env.NEXT_PUBLIC_ADMIN_PASSWORD as string)), mode: "all" });
 	const exportFormular = useForm({ resolver: zodResolver(exportSchema), mode: "all" });
+	const hasRegistrations = registrations.length > 0;
 
 	return (
 		<>
@@ -57,7 +58,7 @@ export default function Admin({ registrations }: InferGetServerSidePropsType<typ
 
 					<Stepper.Step label={t("export.formular:label")} className={styles.step}>
 						<FormProvider {...exportFormular}>
-							{registrations.length === 0 && (
+							{!hasRegistrations && (
 								<Model>
 									<Model.Icon className="bg-pink-200 dark:bg-pink-700 dark:bg-opacity-25">
 										<FolderIcon className="h-6 w-6 text-pink-700 stroke-2 dark:text-pink-400" />

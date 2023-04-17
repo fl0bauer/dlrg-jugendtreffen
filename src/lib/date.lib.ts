@@ -11,3 +11,12 @@ export function getAge(birthDate: string, untilDate?: string): number {
 
 	return age;
 }
+
+/**
+ * Format a Date from yyyy-mm-dd to dd-mm-yyyy
+ * @param date
+ */
+export function formatDate(date: string) {
+	const [year, month, day] = date.split("-");
+	return `${day}.${month}.${year}`;
+}
