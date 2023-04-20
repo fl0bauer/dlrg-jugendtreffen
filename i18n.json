@@ -13,7 +13,8 @@
       "participants.formular",
       "password.formular",
       "sepa.formular",
-      "supervisor.formular"
+      "supervisor.formular",
+      "legal.formular"
     ],
     "/admin": [
       "admin",
