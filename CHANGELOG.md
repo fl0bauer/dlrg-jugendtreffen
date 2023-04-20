@@ -1,3 +1,11 @@
+# [1.17.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.16.0...v1.17.0) (2023-04-20)
+
+
+### Features
+
+* **components:** add `link` component ([7b9841c](https://github.com/fl0bauer/drlg-event-registration-form/commit/7b9841caf0cfdddc8e339ae3338cb2a5ab502ece))
+* **formulars:** add `link` to `legal` ([449c5b3](https://github.com/fl0bauer/drlg-event-registration-form/commit/449c5b3a4ddd615dfea616e62fea5495b145e311))
+
 # [1.16.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.15.1...v1.16.0) (2023-04-20)
 
 
