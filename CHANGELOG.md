@@ -1,3 +1,10 @@
+# [1.16.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.15.1...v1.16.0) (2023-04-20)
+
+
+### Features
+
+* **formulars:** add `legal` formular ([b5ccec7](https://github.com/fl0bauer/drlg-event-registration-form/commit/b5ccec7ee472283f1024d05904112159b33a1334))
+
 ## [1.15.1](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.15.0...v1.15.1) (2023-04-17)
 
 
