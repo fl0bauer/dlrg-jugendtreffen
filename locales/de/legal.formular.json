@@ -1,0 +1,10 @@
+{
+  "inputs": {
+    "accept": {
+      "label": "Teilnahmebedingungen gelesen und akzeptiert",
+      "errors": {
+        "invalid": "Du musst den Teilnahmebedingungen zustimmen"
+      }
+    }
+  }
+}

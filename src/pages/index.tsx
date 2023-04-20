@@ -9,7 +9,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { locationSchema } from "@/schemas/location.schema";
 import LocationFormular from "@/formulars/location.formular";
-import SupervisorFormular from "@/formulars/supervisor-formular";
+import SupervisorFormular from "@/formulars/supervisor.formular";
 import ParticipantsFormular from "@/formulars/participants.formular";
 import { supervisorSchema } from "@/schemas/supervisor.schema";
 import { participantsSchema } from "@/schemas/participants.schema";
@@ -23,6 +23,8 @@ import { Stepper } from "@/components/stepper.component";
 import { Model } from "@/components/model.component";
 import Intro from "@/components/intro.component";
 import { calculateEstimatedPrice, getRegistrationCreateInputFromFormular, getSupervisor, hasDeadlinePassed } from "@/lib/index.page.lib";
+import LegalFormular from "@/formulars/legal.formular";
+import { legalSchema } from "@/schemas/legal.schema";
 
 export const getServerSideProps = async () => {
 	const associations = await fetchAssociations();
@@ -95,6 +97,7 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 	const supervisorFormular = useForm({ resolver: zodResolver(supervisorSchema), mode: "all" });
 	const participantsFormular = useForm({ resolver: zodResolver(participantsSchema), mode: "all" });
 	const sepaFormular = useForm({ resolver: zodResolver(sepaSchema), mode: "all" });
+	const legalFormular = useForm({ resolver: zodResolver(legalSchema), mode: "all" });
 
 	const onRegister = async () => {
 		setSubmitStatus("loading");
@@ -200,7 +203,7 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 						</FormProvider>
 					</Stepper.Step>
 
-					<Stepper.Step label={t("sepa.formular:label")} className={styles.step} disableNextStep={!sepaFormular.formState.isValid || submitStatus === "loading"} onNextStep={onRegister}>
+					<Stepper.Step label={t("sepa.formular:label")} className={styles.step} disableNextStep={!sepaFormular.formState.isValid || !legalFormular.formState.isValid || submitStatus === "loading"} onNextStep={onRegister}>
 						<Model>
 							<Model.Icon className="bg-teal-200 dark:bg-teal-700 dark:bg-opacity-25">
 								<CurrencyEuroIcon className="h-6 w-6 text-teal-700 stroke-2 dark:text-teal-400" />
@@ -211,6 +214,10 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 
 						<FormProvider {...sepaFormular}>
 							<SepaFormular />
+						</FormProvider>
+
+						<FormProvider {...legalFormular}>
+							<LegalFormular />
 						</FormProvider>
 					</Stepper.Step>
 				</Stepper>
