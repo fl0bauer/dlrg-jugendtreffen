@@ -1,7 +1,7 @@
 {
   "inputs": {
     "accept": {
-      "label": "Teilnahmebedingungen gelesen und akzeptiert",
+      "label": "Ich habe die <0>Teilnahmebedingungen</0> gelesen und akzeptiert",
       "errors": {
         "invalid": "Du musst den Teilnahmebedingungen zustimmen"
       }
