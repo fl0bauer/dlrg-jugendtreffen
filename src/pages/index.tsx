@@ -9,7 +9,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { locationSchema } from "@/schemas/location.schema";
 import LocationFormular from "@/formulars/location.formular";
-import SupervisorFormular from "@/formulars/supervisor-formular";
+import SupervisorFormular from "@/formulars/supervisor.formular";
 import ParticipantsFormular from "@/formulars/participants.formular";
 import { supervisorSchema } from "@/schemas/supervisor.schema";
 import { participantsSchema } from "@/schemas/participants.schema";
