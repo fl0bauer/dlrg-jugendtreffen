@@ -1,3 +1,10 @@
+## [1.18.1](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.18.0...v1.18.1) (2024-02-04)
+
+
+### Reverts
+
+* Revert "feat(location): remove local & disable association" ([493e928](https://github.com/fl0bauer/drlg-event-registration-form/commit/493e928a466e9a2f068b3ce178e6c00d32b25444))
+
 # [1.18.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.17.0...v1.18.0) (2024-02-04)
 
 
