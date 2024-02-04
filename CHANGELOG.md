@@ -1,3 +1,10 @@
+# [1.18.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.17.0...v1.18.0) (2024-02-04)
+
+
+### Features
+
+* **location:** remove local & disable association ([d7574f1](https://github.com/fl0bauer/drlg-event-registration-form/commit/d7574f10e1be5fa2c84efc463222fdc475d4ca0a)), closes [#50](https://github.com/fl0bauer/drlg-event-registration-form/issues/50)
+
 # [1.17.0](https://github.com/fl0bauer/drlg-event-registration-form/compare/v1.16.0...v1.17.0) (2023-04-20)
 
 
