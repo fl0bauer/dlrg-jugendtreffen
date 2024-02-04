@@ -93,7 +93,7 @@ export default function Home({ associations }: InferGetServerSidePropsType<typeo
 	const [submitStatus, setSubmitStatus] = useState<"none" | "loading" | "success" | "error">("none");
 
 	const passwordFormular = useForm({ resolver: zodResolver(passwordSchema(process.env.NEXT_PUBLIC_PASSWORD as string)), mode: "all" });
-	const locationFormular = useForm({ resolver: zodResolver(locationSchema), mode: "all" });
+	const locationFormular = useForm({ resolver: zodResolver(locationSchema(associations)), mode: "all" });
 	const supervisorFormular = useForm({ resolver: zodResolver(supervisorSchema), mode: "all" });
 	const participantsFormular = useForm({ resolver: zodResolver(participantsSchema), mode: "all" });
 	const sepaFormular = useForm({ resolver: zodResolver(sepaSchema), mode: "all" });
