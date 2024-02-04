@@ -22,10 +22,3 @@ export default function LegalFormular() {
 		</Form>
 	);
 }
-
-// <span>
-// 							<a href={"#"} className="text-blue-400 hover:underline underline-offset-4">
-// 								Teilnahmebedingungen
-// 							</a>{" "}
-// 	gelesen und akzeptiert
-// 						</span>
